@@ -1,83 +1,76 @@
-/* Year in footer */
-document.querySelectorAll('#year').forEach(n => n.textContent = new Date().getFullYear());
+// ---------- Simple gallery lightbox for home ----------
+const lightbox = document.getElementById('lightbox');
+if (lightbox) {
+  const lbImg = lightbox.querySelector('img');
+  const lbClose = lightbox.querySelector('.lightbox-close');
 
-/* Smooth scroll for [data-scroll] and hash links to sections */
-document.querySelectorAll('a[data-scroll], a[href^="/#"], a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const href = a.getAttribute('href');
-    if (!href) return;
-    const id = href.startsWith('/#') ? href.slice(2) : href.startsWith('#') ? href.slice(1) : null;
-    if (!id) return;
-    const el = document.getElementById(id);
-    if (!el) return;
-    e.preventDefault();
-    el.scrollIntoView({behavior:'smooth', block:'start'});
-    history.replaceState(null, '', `/#${id}`);
-  });
-});
-
-/* LIGHTBOX (gallery + builds modal) */
-(function(){
-  const lightbox = document.getElementById('lightbox');
-  if (!lightbox) return;
-  const img = lightbox.querySelector('.lb-img');
-  const btnClose = lightbox.querySelector('.lb-close');
-  const btnPrev = lightbox.querySelector('.lb-prev');
-  const btnNext = lightbox.querySelector('.lb-next');
-
-  let list = [];  // array of srcs
-  let idx = 0;
-
-  function open(srcs, startAt=0){
-    list = srcs;
-    idx = startAt;
-    update();
-    lightbox.classList.add('open');
-    lightbox.setAttribute('aria-hidden','false');
-  }
-  function update(){
-    img.src = list[idx];
-  }
-  function close(){
-    lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden','true');
-    img.src = '';
-  }
-  function next(){ idx = (idx+1) % list.length; update(); }
-  function prev(){ idx = (idx-1+list.length) % list.length; update(); }
-
-  // From gallery grid on home
-  const gridImgs = Array.from(document.querySelectorAll('.lightbox-trigger'));
-  if (gridImgs.length){
-    const srcs = gridImgs.map(el => el.getAttribute('src'));
-    gridImgs.forEach((el, i) => el.addEventListener('click', () => open(srcs, i)));
-  }
-
-  // From builds page "View photos" button
-  document.querySelectorAll('.open-gallery').forEach(btn => {
-    btn.addEventListener('click', () => {
-      try{
-        const arr = JSON.parse(btn.dataset.gallery);
-        if (Array.isArray(arr) && arr.length) open(arr, 0);
-      }catch{}
+  document.querySelectorAll('.glight').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lightbox.classList.add('show');
+      lightbox.setAttribute('aria-hidden', 'false');
     });
   });
 
-  btnClose.addEventListener('click', close);
-  btnNext.addEventListener('click', next);
-  btnPrev.addEventListener('click', prev);
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
-  document.addEventListener('keydown', (e) => {
-    if (!lightbox.classList.contains('open')) return;
-    if (e.key === 'Escape') close();
-    if (e.key === 'ArrowRight') next();
-    if (e.key === 'ArrowLeft') prev();
-  });
-})();
+  const closeLB = () => {
+    lightbox.classList.remove('show');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lbImg.src = '';
+  };
+  lbClose?.addEventListener('click', closeLB);
+  lightbox?.addEventListener('click', (e) => { if (e.target === lightbox) closeLB(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLB(); });
+}
 
-/* Kill stray text cursor anywhere that is not input/textarea */
-document.addEventListener('mousedown', (e)=>{
-  if (!(e.target instanceof HTMLInputElement) && !(e.target instanceof HTMLTextAreaElement)) {
-    document.activeElement && document.activeElement.blur?.();
-  }
+// ---------- Builds modal with next/prev ----------
+function initBuildModal(id) {
+  const modal = document.getElementById(`build-${id}`);
+  if (!modal) return;
+
+  const dialog = modal.querySelector('.build-modal-dialog');
+  const slidesWrap = modal.querySelector('.build-slides');
+  const imgs = Array.from(slidesWrap.querySelectorAll('img'));
+  const prev = slidesWrap.querySelector('.prev');
+  const next = slidesWrap.querySelector('.next');
+  const closeBtn = modal.querySelector('.build-close');
+
+  let idx = 0;
+  const show = (i) => {
+    imgs.forEach((im, n) => im.classList.toggle('active', n === i));
+  };
+  const open = () => {
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    idx = 0;
+    show(idx);
+  };
+  const close = () => {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+  };
+
+  prev.addEventListener('click', () => { idx = (idx - 1 + imgs.length) % imgs.length; show(idx); });
+  next.addEventListener('click', () => { idx = (idx + 1) % imgs.length; show(idx); });
+  closeBtn.addEventListener('click', close);
+  modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+  document.addEventListener('keydown', (e) => { if (modal.classList.contains('show') && e.key === 'Escape') close(); });
+
+  // public open hook
+  return { open };
+}
+
+// wire up all build cards
+document.querySelectorAll('.open-build').forEach(btn => {
+  const id = btn.dataset.build;
+  const api = initBuildModal(id);
+  btn.addEventListener('click', () => api?.open());
 });
+
+// make non-input text not caret-editable (kills “blinking cursor” feeling)
+document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, div')
+  .forEach(el => {
+    if (el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA' && el.tagName !== 'A') {
+      el.setAttribute('contenteditable', 'false');
+      el.style.caretColor = 'transparent';
+    }
+  });

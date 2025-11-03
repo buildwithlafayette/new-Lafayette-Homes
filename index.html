@@ -1,216 +1,226 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lafayette Homes — Upstate SC Custom Homes</title>
-  <meta name="description" content="Lafayette Homes designs and builds high-performance custom homes in Upstate South Carolina." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lafayette Homes</title>
 
-  <!-- Icons / sharing -->
-  <link rel="icon" href="/images/logo-square.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/images/logo-square.png" />
-  <meta property="og:title" content="Lafayette Homes — Upstate SC Custom Homes" />
-  <meta property="og:description" content="Designs that flow. High-efficiency builds. 3+ beds / 2+ baths." />
-  <meta property="og:image" content="https://www.buildwithlafayette.com/images/logo-square.png" />
-  <meta property="og:type" content="website" />
-
-  <link rel="preload" as="image" href="/images/hero.jpg" />
-  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="styles.css?v=4" />
+  <link rel="stylesheet" href="styles.mobile.css?v=4" media="(max-width: 768px)" />
 </head>
 <body>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container header-row">
-      <a href="/" class="brand" aria-label="Lafayette Homes">
-        <img src="/images/logo-square.png" alt="Lafayette Homes logo" class="brand-logo" />
-        <span class="brand-text">Lafayette Homes</span>
-      </a>
 
-      <nav class="nav">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#process" class="nav-link">Process</a>
-        <a href="#projects" class="nav-link">Gallery</a>
-        <a href="/builds" class="nav-link">Builds</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="images/logo-square.png" alt="Lafayette Homes" />
+    <span>Lafayette Homes</span>
+  </a>
 
-      <a class="call-chip" href="tel:+18647561313" aria-label="Call 864-756-1313">864-756-1313</a>
+  <nav class="nav">
+    <a href="index.html">About</a>
+    <a href="#process">Process</a>
+    <a href="#gallery">Gallery</a>
+    <a href="builds.html">Builds</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <a class="call-chip" href="tel:8647561313">864-756-1313</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-bg" src="images/hero.jpg" alt="Custom home exterior" />
+  <div class="hero-overlay"></div>
+
+  <div class="hero-inner container">
+    <div class="hero-tag">CUSTOM HOMES • UPSTATE SC</div>
+    <h1 class="hero-title">We build homes you brag about.</h1>
+    <p class="hero-sub">
+      Lafayette Homes designs and builds high-performance homes with serious curb
+      appeal: smart layouts, luxury finishes — without the ridiculous builder markup.
+    </p>
+
+    <div class="hero-ctas">
+      <a class="btn primary" href="builds.html">Builds</a>
+      <a class="btn outline" href="#gallery">See the look</a>
     </div>
-  </header>
 
-  <!-- Hero -->
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-bg" style="background-image:url('/images/hero.jpg');"></div>
-    <div class="container hero-inner">
-      <div class="hero-kicker">CUSTOM HOMES • UPSTATE SC</div>
-      <h1 id="hero-title" class="hero-title">
-        We build homes you brag about.
-      </h1>
-      <p class="hero-sub">
-        Lafayette Homes designs and builds high-performance homes with serious curb appeal:
-        smart layouts and luxury finishes — without the ridiculous builder markup.
-      </p>
-
-      <div class="hero-ctas">
-        <a href="/builds" class="btn btn-primary">Builds</a>
-        <a href="#projects" class="btn btn-ghost" data-scroll>See the look</a>
-      </div>
-
-      <div class="hero-pill-row">
-        <div class="pill">
-          <div class="pill-title">Right-sized plans</div>
-          <div class="pill-sub">Single-story and bonus-room options that actually flow.</div>
-        </div>
-        <div class="pill">
-          <div class="pill-title">High-efficiency homes</div>
-          <div class="pill-sub">Tight envelopes, sealed ducts, efficient HVAC.</div>
-        </div>
-        <div class="pill">
-          <div class="pill-title">3+ beds / 2+ baths</div>
-          <div class="pill-sub">Room for guests, resale, and real life — not just photos.</div>
-        </div>
-      </div>
+    <div class="hero-pills">
+      <div class="pill">Right-sized plans</div>
+      <div class="pill">High-efficiency homes</div>
+      <div class="pill">3+ beds / 2+ baths</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- About / Warranty -->
-  <section id="about" class="container section">
-    <div class="two-col">
-      <div>
-        <h2 class="section-title">We build like people who actually live in houses.</h2>
-        <p class="lead">
-          No weird angles. No wasted rooms. No 2-car garage that barely fits one truck.
-          You get open main living, a real primary suite, and space for tools, toys, or a home office.
-        </p>
+<!-- WHY / FEATURES / WARRANTY -->
+<section class="section container" id="why">
+  <h2>We build like people who actually live in houses.</h2>
+  <p class="lead">
+    No weird angles. No wasted rooms. No 2-car garage that barely fits one truck.
+    You get open main living, a real primary suite, and space for tools, toys, or a home office.
+  </p>
 
-        <div class="grid-cards">
-          <div class="card"><h3>Durable finishes</h3><p>We pick what survives dogs, boots, and gravity — not just what photographs shiny.</p></div>
-          <div class="card"><h3>Bonus/media rooms</h3><p>Upstairs flex or theater space without making the house feel huge.</p></div>
-          <div class="card"><h3>Garage depth you can use</h3><p>Deep, side-load options that actually fit trucks and tools.</p></div>
-          <div class="card"><h3>Site-smart layouts</h3><p>Windows, doors, and porches placed for privacy and light on your lot.</p></div>
-        </div>
-      </div>
-
-      <aside class="warranty">
-        <div class="warranty-inner">
-          <h4 class="eyebrow">You get:</h4>
-          <ul class="w-list">
-            <li><strong>Straight talk pricing</strong><span>No mystery “builder fees”.</span></li>
-            <li><strong>Daily transparency</strong><span>You always know what’s happening and why.</span></li>
-            <li><strong>Stuff done right</strong><span>We care about the parts you can’t fake with staging.</span></li>
-          </ul>
-
-          <div class="w-grid">
-            <div class="w-item">
-              <div class="w-head">Structural — 10 years</div>
-              <div class="w-sub">Beyond the state minimums many builders stick to.</div>
-            </div>
-            <div class="w-item">
-              <div class="w-head">Mechanical systems — 2 years</div>
-              <div class="w-sub">HVAC, plumbing, electrical — parts & labor coverage.</div>
-            </div>
-            <div class="w-item">
-              <div class="w-head">Workmanship — 2 years</div>
-              <div class="w-sub">Finishes and fit beyond the standard 1-year punch list.</div>
-            </div>
-          </div>
-
-          <div class="now-booking">
-            <div class="nb-eyebrow">NOW BOOKING</div>
-            <div class="nb-title">2026 Custom Build Slots</div>
-            <a href="/builds" class="btn btn-success">Claim a spot</a>
-          </div>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <!-- Process -->
-  <section id="process" class="container section">
-    <h2 class="section-title">No games. Just a straight path from dirt to keys.</h2>
-    <p class="lead">We stay involved. You stay in control. You don’t get ghosted once the slab is poured.</p>
-
-    <div class="process-grid">
-      <div class="p-card"><div class="p-step">Step 01</div><h3>Call & fit check</h3><p>We talk about what you want, where you want it, and what’s realistic for budget.</p></div>
-      <div class="p-card"><div class="p-step">Step 02</div><h3>Plan / layout dialing</h3><p>Garage depth, kitchen flow, primary bath layout. We tune the important stuff first.</p></div>
-      <div class="p-card"><div class="p-step">Step 03</div><h3>Build it right</h3><p>We manage site, subs, schedule, inspections. You get updates like it’s your money — because it is.</p></div>
-      <div class="p-card"><div class="p-step">Step 04</div><h3>Walkthrough & handoff</h3><p>You touch every switch, door, faucet, and breaker before you sign off.</p></div>
-    </div>
-  </section>
-
-  <!-- Gallery -->
-  <section id="projects" class="container section">
-    <h2 class="section-title">Projects</h2>
-    <div class="gallery-grid">
-      <!-- Exterior first -->
-      <img src="/images/ext1.jpg" alt="Exterior front" class="gallery-img lightbox-trigger" />
-      <img src="/images/ext2.jpg" alt="Exterior side" class="gallery-img lightbox-trigger" />
-      <img src="/images/ext3.jpg" alt="Exterior rear" class="gallery-img lightbox-trigger" />
-      <!-- Interior -->
-      <img src="/images/int1.jpg" alt="Interior 1" class="gallery-img lightbox-trigger" />
-      <img src="/images/int2.jpg" alt="Interior 2" class="gallery-img lightbox-trigger" />
-      <img src="/images/int3.jpg" alt="Interior 3" class="gallery-img lightbox-trigger" />
-      <img src="/images/int4.jpg" alt="Interior 4" class="gallery-img lightbox-trigger" />
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="container section">
-    <div class="contact-grid">
-      <div>
-        <div class="eyebrow" id="start-here">START HERE</div>
-        <h2 class="section-title">Ready to build something that actually fits your life?</h2>
-        <p class="lead">
-          Tell us what you’re thinking. Give us the real list — not the polite list.
-        </p>
-
-        <div class="contact-card">
-          <div class="contact-row"><strong>Call or text</strong><a href="tel:+18647561313">864-756-1313</a></div>
-          <div class="contact-row"><strong>Email</strong><a href="mailto:info@buildwithlafayette.com">info@buildwithlafayette.com</a></div>
-          <div class="contact-row"><strong>Where we build</strong>Upstate South Carolina</div>
-        </div>
-      </div>
-
-      <form action="https://formsubmit.co/info@buildwithlafayette.com" method="POST" class="contact-form">
-        <input type="hidden" name="_next" value="https://www.buildwithlafayette.com/thank-you" />
-        <input type="hidden" name="_captcha" value="false" />
-        <label>Name<input name="name" type="text" placeholder="Your name" required /></label>
-        <div class="row">
-          <label>Phone<input name="phone" type="tel" placeholder="864-756-1313" required /></label>
-          <label>Email<input name="email" type="email" placeholder="you@email.com" required /></label>
-        </div>
-        <label>Where are you looking to build?
-          <input name="area" type="text" placeholder="City / area / land you already own" />
-        </label>
-        <label>Must-haves
-          <textarea name="must_haves" rows="5" placeholder="3-car garage, media room, walk-in shower, privacy, etc."></textarea>
-        </label>
-        <button class="btn btn-primary btn-full" type="submit">Send it</button>
-        <div class="legal">By submitting, you’re just starting a conversation. Zero sales pressure.</div>
-      </form>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container footer-row">
-      <div>© <span id="year"></span> Lafayette Homes LLC</div>
-      <div class="foot-links">
-        <a href="/builds">Builds</a>
-        <a href="#projects" data-scroll>Gallery</a>
-        <a href="#process" data-scroll>Process</a>
-        <a href="#contact" data-scroll>Contact</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Lightbox modal -->
-  <div id="lightbox" aria-hidden="true" class="lightbox">
-    <button class="lb-close" aria-label="Close">×</button>
-    <button class="lb-prev" aria-label="Previous">‹</button>
-    <img class="lb-img" alt="" />
-    <button class="lb-next" aria-label="Next">›</button>
+  <div class="features">
+    <article class="card">
+      <h3>Durable finishes</h3>
+      <p>We pick what survives dogs, boots, and gravity — not just what photographs shiny.</p>
+    </article>
+    <article class="card">
+      <h3>Bonus/media rooms</h3>
+      <p>Upstairs flex or theater without making the house feel huge.</p>
+    </article>
+    <article class="card">
+      <h3>Garage depth you can use</h3>
+      <p>Deep, side-load options that actually fit trucks and tools.</p>
+    </article>
+    <article class="card">
+      <h3>Site-smart layouts</h3>
+      <p>Windows, doors, and porches placed for privacy and light on <em>your</em> lot.</p>
+    </article>
   </div>
 
-  <script src="/main.js" defer></script>
+  <div class="warranty-grid">
+    <div class="warranty">
+      <h4>Structural — 10 years</h4>
+      <p>Beyond the SC minimums most builders stick to.</p>
+    </div>
+    <div class="warranty">
+      <h4>Mechanical systems — 2 years</h4>
+      <p>HVAC, plumbing, electrical — parts & labor coverage.</p>
+    </div>
+    <div class="warranty">
+      <h4>Workmanship — 2 years</h4>
+      <p>Finishes and fit beyond the standard 1-year punch list.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section alt" id="process">
+  <div class="container">
+    <h2>No games. Just a straight path from dirt to keys.</h2>
+    <p class="lead">We stay involved. You stay in control. You don't get ghosted once the slab is poured.</p>
+
+    <div class="steps">
+      <article class="step card">
+        <div class="step-num">Step 01</div>
+        <h3>Call & fit check</h3>
+        <p>We talk about what you want, where you want it, and what's realistic for budget.</p>
+      </article>
+
+      <article class="step card">
+        <div class="step-num">Step 02</div>
+        <h3>Plan / layout dialing</h3>
+        <p>Garage depth, kitchen flow, primary bath layout. We tune the important stuff first.</p>
+      </article>
+
+      <article class="step card">
+        <div class="step-num">Step 03</div>
+        <h3>Build it right</h3>
+        <p>We manage site, subs, schedule, inspections. You get updates like it's your money — because it is.</p>
+      </article>
+
+      <article class="step card">
+        <div class="step-num">Step 04</div>
+        <h3>Walkthrough & handoff</h3>
+        <p>You touch every switch, door, faucet, and breaker before you sign off.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section container" id="gallery">
+  <h2>Projects</h2>
+
+  <div class="gallery-grid">
+    <img src="images/ext1.jpg" alt="Exterior 1" class="glight" />
+    <img src="images/ext2.jpg" alt="Exterior 2" class="glight" />
+    <img src="images/ext3.jpg" alt="Exterior 3" class="glight" />
+    <img src="images/int1.jpg" alt="Interior 1" class="glight" />
+    <img src="images/int2.jpg" alt="Interior 2" class="glight" />
+    <img src="images/int3.jpg" alt="Interior 3" class="glight" />
+    <img src="images/int4.jpg" alt="Interior 4" class="glight" />
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+  <div class="container contact-grid">
+    <div>
+      <div class="eyebrow">START HERE</div>
+      <h2>Ready to build something that actually fits your life?</h2>
+      <p class="lead">
+        Tell us what you’re thinking. Square footage target, land situation, must-haves,
+        non-negotiables — give us the real list, not the polite list.
+      </p>
+
+      <div class="contact-cards">
+        <div class="info-card">
+          <div class="label">Call or text</div>
+          <a href="tel:8647561313">864-756-1313</a>
+        </div>
+        <div class="info-card">
+          <div class="label">Email</div>
+          <a href="mailto:info@buildwithlafayette.com">info@buildwithlafayette.com</a>
+        </div>
+        <div class="info-card">
+          <div class="label">Where we build</div>
+          <div>Upstate South Carolina</div>
+        </div>
+      </div>
+    </div>
+
+    <form action="https://formsubmit.co/info@buildwithlafayette.com" method="POST" class="card form">
+      <input type="hidden" name="_next" value="https://buildwithlafayette.com/thank-you.html" />
+      <input type="hidden" name="_captcha" value="false" />
+
+      <label>Name
+        <input name="name" placeholder="Your name" required />
+      </label>
+
+      <div class="row">
+        <label>Phone
+          <input name="phone" type="tel" placeholder="864-756-1313" required />
+        </label>
+        <label>Email
+          <input name="email" type="email" placeholder="you@email.com" required />
+        </label>
+      </div>
+
+      <label>Where are you looking to build?
+        <input name="area" placeholder="City / area / land you already own" />
+      </label>
+
+      <label>Must-haves
+        <textarea name="must_haves" rows="5" placeholder="3-car garage, media room, walk-in shower, privacy, etc."></textarea>
+      </label>
+
+      <button class="btn primary" type="submit">Send it</button>
+      <p class="no-pressure">By submitting, you’re just starting a conversation. Zero sales pressure.</p>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>© 2025 Lafayette Homes LLC</div>
+    <nav class="footer-nav">
+      <a href="builds.html">Builds</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- Lightbox container -->
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Close">×</button>
+  <img src="" alt="" />
+</div>
+
+<script src="main.js?v=4"></script>
 </body>
 </html>
