@@ -1,1 +1,118 @@
+:root{
+  --bg:#0b0f0c; --panel:#111613; --soft:#0f1411; --muted:#a9b7ac;
+  --text:#e8efe9; --gold:#f1c40f; --accent:#1f8a65; --ring:#2a3a31;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,Segoe UI,Inter,Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block;border-radius:16px}
+.container{max-width:1100px;margin:0 auto;padding:40px 20px}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:20;display:flex;gap:24px;align-items:center;justify-content:space-between;padding:12px 20px;background:rgba(10,12,10,.8);backdrop-filter:blur(8px);border-bottom:1px solid #121a15}
+.nav .brand{font-weight:700}
+.nav nav a{margin:0 10px;opacity:.9}
+.nav nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:6px}
+.call-btn{padding:10px 14px;background:#f4ce1b;color:#111;border-radius:999px;font-weight:700}
+
+/* Hero */
+.hero{position:relative;padding:120px 20px 60px}
+.hero::before{
+  content:"";position:absolute;inset:0;background:
+  radial-gradient(1200px 600px at 20% 0%, rgba(35,70,50,.35),transparent),
+  linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.75)),
+  var(--hero) center/cover no-repeat;
+  z-index:-1;filter:saturate(1.05)
+}
+.hero .badge{display:inline-block;background:#183328;border:1px solid #234733;color:#bfe2cf;padding:6px 12px;border-radius:999px;margin-bottom:18px;font-size:.9rem}
+.hero h1{max-width:900px;font-size: clamp(2.4rem, 6vw, 4.2rem);line-height:1.05;margin:0 0 10px}
+.hero p{max-width:900px;opacity:.9;margin:0 0 20px}
+.hero-actions{display:flex;gap:16px;margin:12px 0 26px}
+
+/* Hero cards */
+.hero-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:980px}
+.hero-card{background:rgba(17,22,19,.85);border:1px solid #1b2a22;padding:16px 18px;border-radius:14px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 20px;border-radius:14px;border:1px solid #2a3a31;box-shadow:var(--shadow);cursor:pointer}
+.btn-primary{background:#f4ce1b;color:#111;border-color:#f4ce1b;font-weight:700}
+.btn-ghost{background:rgba(0,0,0,.35)}
+.btn-green{background:#0f5f47;border-color:#0f5f47}
+.btn.full{width:100%}
+
+/* Why */
+.why{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;max-width:1200px;margin:50px auto;padding:0 20px}
+.chip{display:inline-block;padding:8px 12px;background:#0f2c22;border:1px solid #173c2d;border-radius:999px;color:#b7e7d3;margin-bottom:12px}
+.why h2{font-size:clamp(1.8rem,4vw,3rem);margin:0 0 6px}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+.tile{background:var(--panel);border:1px solid #18261e;border-radius:14px;padding:14px}
+
+/* Right column */
+.card{background:var(--panel);border:1px solid #18261e;border-radius:18px;padding:16px;box-shadow:var(--shadow)}
+.card-soft{background:#0d130f;border:1px solid #1a2a21;border-radius:18px;padding:16px}
+.list>div{margin-bottom:12px}
+.warranty ul{list-style:none;padding:0;margin:12px 0}
+.warranty li{display:flex;justify-content:space-between;gap:18px;padding:10px 0;border-bottom:1px solid #18261e}
+.warranty li span{color:var(--muted);max-width:60%}
+.now-booking .eyebrow{color:#9fe0c4;font-size:.9rem;margin-bottom:8px}
+.now-booking .big{font-weight:800;font-size:1.6rem;margin-bottom:10px}
+
+/* Process */
+.process{max-width:1200px;margin:60px auto;padding:0 20px}
+.process h2{font-size:clamp(1.8rem,4vw,3rem);margin:6px 0}
+.lead{opacity:.9}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:18px}
+.eyebrow{color:#79c8a8;font-weight:700;margin-bottom:6px}
+
+/* Projects */
+.projects{max-width:1200px;margin:60px auto;padding:0 20px}
+.projects h2{font-size:2.2rem;margin-bottom:14px}
+.project-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.zoomable{cursor:zoom-in}
+
+/* Contact */
+.contact{max-width:1200px;margin:70px auto;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.contact-card{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.contact-form label{display:block;margin-bottom:12px}
+.contact-form input,.contact-form textarea{
+  width:100%;background:var(--soft);border:1px solid #1a2a21;color:var(--text);
+  padding:12px 14px;border-radius:12px;outline:none
+}
+.contact-form input:focus,.contact-form textarea:focus{box-shadow:0 0 0 3px #1d3328}
+
+/* Builds */
+.build-card{display:grid;grid-template-columns:380px 1fr;gap:18px;align-items:stretch;background:var(--panel);border:1px solid #18261e;border-radius:18px;padding:16px;margin:20px auto;max-width:1100px}
+.build-thumb{width:100%;height:100%;object-fit:cover;border-radius:14px;cursor:zoom-in}
+.build-info .pill{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid #3a2a2a;background:#2a1b1b;margin-bottom:8px}
+.pill.sold{color:#ffbdbd}
+.meta{color:var(--muted);margin:6px 0 12px}
+.actions{display:flex;gap:10px;margin:8px 0 14px}
+
+/* Footer */
+.footer{display:flex;justify-content:center;gap:8px;padding:40px 20px;color:#9aa89f;border-top:1px solid #111613;margin-top:60px}
+
+/* Lightbox */
+.lightbox[hidden]{display:none}
+.lightbox{position:fixed;inset:0;z-index:50}
+.lightbox-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.7)}
+.lightbox-frame{position:absolute;inset:6% 10%;display:grid;grid-template-columns:60px 1fr 60px;align-items:center}
+.lightbox-img{max-height:100%;width:100%;object-fit:contain;border-radius:14px}
+.lightbox-prev,.lightbox-next,.lightbox-close{
+  position:relative;z-index:2;background:rgba(15,20,17,.85);border:1px solid #223228;color:#e8efe9;
+  width:48px;height:48px;border-radius:12px;cursor:pointer;display:grid;place-items:center
+}
+.lightbox-close{position:absolute;top:-18px;right:-18px}
+
+/* Helpers */
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card.center{max-width:560px;margin:120px auto}
+@media (max-width:1024px){
+  .why{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .project-grid{grid-template-columns:1fr 1fr}
+  .build-card{grid-template-columns:1fr}
+  .contact{grid-template-columns:1fr}
+  .contact-card{grid-template-columns:1fr}
+}
 
