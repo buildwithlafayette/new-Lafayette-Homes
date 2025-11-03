@@ -1,64 +1,83 @@
-// Remove “blinking text cursor” on headings/paragraphs by blurring non-input clicks
-document.addEventListener('mousedown', (e) => {
-  const tag = e.target.tagName;
-  const interactive = ['INPUT','TEXTAREA','SELECT','BUTTON','A','LABEL','IMG'];
-  if (!interactive.includes(tag)) document.activeElement?.blur?.();
-});
+/* Year in footer */
+document.querySelectorAll('#year').forEach(n => n.textContent = new Date().getFullYear());
 
-// Smooth anchor scroll (for “See the look”, “Process”, etc.)
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click', e=>{
-    const id = a.getAttribute('href').slice(1);
+/* Smooth scroll for [data-scroll] and hash links to sections */
+document.querySelectorAll('a[data-scroll], a[href^="/#"], a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (!href) return;
+    const id = href.startsWith('/#') ? href.slice(2) : href.startsWith('#') ? href.slice(1) : null;
+    if (!id) return;
     const el = document.getElementById(id);
-    if(el){
-      e.preventDefault();
-      el.scrollIntoView({behavior:'smooth', block:'start'});
-    }
+    if (!el) return;
+    e.preventDefault();
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+    history.replaceState(null, '', `/#${id}`);
   });
 });
 
-// Shared Lightbox (home projects + builds page)
-const lb = document.querySelector('.lightbox');
-if (lb){
-  const imgEl = lb.querySelector('.lightbox-img');
-  const prev = lb.querySelector('.lightbox-prev');
-  const next = lb.querySelector('.lightbox-next');
-  const closeBtn = lb.querySelector('.lightbox-close');
-  const backdrop = lb.querySelector('.lightbox-backdrop');
-  let photos = [], idx = 0;
+/* LIGHTBOX (gallery + builds modal) */
+(function(){
+  const lightbox = document.getElementById('lightbox');
+  if (!lightbox) return;
+  const img = lightbox.querySelector('.lb-img');
+  const btnClose = lightbox.querySelector('.lb-close');
+  const btnPrev = lightbox.querySelector('.lb-prev');
+  const btnNext = lightbox.querySelector('.lb-next');
 
-  function openLightbox(list, start=0){
-    photos = list; idx = start;
-    imgEl.src = photos[idx];
-    lb.hidden = false;
-    document.body.style.overflow = 'hidden';
+  let list = [];  // array of srcs
+  let idx = 0;
+
+  function open(srcs, startAt=0){
+    list = srcs;
+    idx = startAt;
+    update();
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden','false');
   }
-  function closeLightbox(){
-    lb.hidden = true; document.body.style.overflow = '';
+  function update(){
+    img.src = list[idx];
   }
-  function nav(d){ idx = (idx + d + photos.length) % photos.length; imgEl.src = photos[idx]; }
+  function close(){
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden','true');
+    img.src = '';
+  }
+  function next(){ idx = (idx+1) % list.length; update(); }
+  function prev(){ idx = (idx-1+list.length) % list.length; update(); }
 
-  // Home project grid (just open single image)
-  document.querySelectorAll('.zoomable').forEach((img, i, all)=>{
-    img.addEventListener('click', ()=>openLightbox([...all].map(x=>x.src), i));
+  // From gallery grid on home
+  const gridImgs = Array.from(document.querySelectorAll('.lightbox-trigger'));
+  if (gridImgs.length){
+    const srcs = gridImgs.map(el => el.getAttribute('src'));
+    gridImgs.forEach((el, i) => el.addEventListener('click', () => open(srcs, i)));
+  }
+
+  // From builds page "View photos" button
+  document.querySelectorAll('.open-gallery').forEach(btn => {
+    btn.addEventListener('click', () => {
+      try{
+        const arr = JSON.parse(btn.dataset.gallery);
+        if (Array.isArray(arr) && arr.length) open(arr, 0);
+      }catch{}
+    });
   });
 
-  // Builds cards (use data-gallery)
-  document.querySelectorAll('.build-card').forEach(card=>{
-    const gallery = JSON.parse(card.dataset.gallery || "[]");
-    const openers = card.querySelectorAll('.open-gallery,.build-thumb');
-    openers.forEach(op => op.addEventListener('click', ()=>openLightbox(gallery,0)));
+  btnClose.addEventListener('click', close);
+  btnNext.addEventListener('click', next);
+  btnPrev.addEventListener('click', prev);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
   });
+})();
 
-  prev?.addEventListener('click', ()=>nav(-1));
-  next?.addEventListener('click', ()=>nav(1));
-  closeBtn?.addEventListener('click', closeLightbox);
-  backdrop?.addEventListener('click', closeLightbox);
-  window.addEventListener('keydown', e=>{
-    if(lb.hidden) return;
-    if(e.key==='Escape') closeLightbox();
-    if(e.key==='ArrowRight') nav(1);
-    if(e.key==='ArrowLeft') nav(-1);
-  });
-}
-
+/* Kill stray text cursor anywhere that is not input/textarea */
+document.addEventListener('mousedown', (e)=>{
+  if (!(e.target instanceof HTMLInputElement) && !(e.target instanceof HTMLTextAreaElement)) {
+    document.activeElement && document.activeElement.blur?.();
+  }
+});

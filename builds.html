@@ -2,57 +2,81 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Current Builds — Lafayette Homes</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lafayette Homes — Current Builds</title>
+  <meta name="description" content="See current Lafayette Homes builds in Upstate South Carolina." />
+  <link rel="icon" href="/images/logo-square.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/images/logo-square.png" />
+  <meta property="og:image" content="https://www.buildwithlafayette.com/images/logo-square.png" />
   <link rel="stylesheet" href="/styles.css" />
-  <script defer src="/main.js"></script>
 </head>
 <body>
-<header class="nav">
-  <a href="/" class="brand">Lafayette Homes</a>
-  <nav>
-    <a href="/">About</a>
-    <a href="/#process">Process</a>
-    <a href="/#projects">Gallery</a>
-    <a href="/builds.html" aria-current="page">Builds</a>
-    <a href="/#contact">Contact</a>
-  </nav>
-  <a class="call-btn" href="tel:8647561313">864-756-1313</a>
-</header>
-
-<main class="container">
-  <h1>Current Builds</h1>
-
-  <!-- Rectangle card: image left, info right -->
-  <article class="build-card" data-gallery='["/images/ext1.jpg","/images/ext2.jpg","/images/ext3.jpg","/images/int1.jpg","/images/int2.jpg","/images/int3.jpg","/images/int4.jpg"]'>
-    <img src="/images/ext1.jpg" alt="123 East Compass Way — exterior" class="build-thumb" />
-    <div class="build-info">
-      <div class="pill sold">SOLD</div>
-      <h2>123 East Compass Way, Easley, SC 29640</h2>
-      <p class="meta">$699,999 • 4 beds • 4 baths • 3,180 sqft</p>
-      <div class="actions">
-        <a class="btn btn-ghost" href="https://www.zillow.com" target="_blank" rel="noopener">View on Zillow</a>
-        <button class="btn btn-primary open-gallery">See photos</button>
-      </div>
-      <p class="desc">Quality you can feel: high-efficiency envelope, sealed ducts, and finishes that survive real life.</p>
+  <header class="site-header">
+    <div class="container header-row">
+      <a href="/" class="brand" aria-label="Lafayette Homes">
+        <img src="/images/logo-square.png" alt="Lafayette Homes logo" class="brand-logo" />
+        <span class="brand-text">Lafayette Homes</span>
+      </a>
+      <nav class="nav">
+        <a href="/" class="nav-link">About</a>
+        <a href="/#process" class="nav-link">Process</a>
+        <a href="/#projects" class="nav-link">Gallery</a>
+        <a href="/builds" class="nav-link nav-active">Builds</a>
+        <a href="/#contact" class="nav-link">Contact</a>
+      </nav>
+      <a class="call-chip" href="tel:+18647561313" aria-label="Call 864-756-1313">864-756-1313</a>
     </div>
-  </article>
-</main>
+  </header>
 
-<footer class="footer">
-  <span>Lafayette Homes LLC</span>
-</footer>
+  <main class="container section">
+    <h1 class="section-title">Current Builds</h1>
 
-<!-- Lightbox -->
-<div class="lightbox" hidden>
-  <div class="lightbox-backdrop"></div>
-  <figure class="lightbox-frame">
-    <button class="lightbox-close" aria-label="Close">×</button>
-    <button class="lightbox-prev" aria-label="Previous">‹</button>
-    <img class="lightbox-img" alt="">
-    <button class="lightbox-next" aria-label="Next">›</button>
-  </figure>
-</div>
+    <!-- Build Card -->
+    <article class="build-card">
+      <img src="/images/ext1.jpg" alt="123 East Compass Way exterior" class="build-thumb" />
+      <div class="build-body">
+        <div class="build-head">
+          <h2 class="build-title">123 East Compass Way, Easley, SC 29640</h2>
+          <span class="badge badge-sold">SOLD</span>
+        </div>
+        <div class="build-meta">
+          <span>4 beds</span><span>4 baths</span><span>3,180 sqft</span>
+        </div>
+        <div class="build-price">$699,999</div>
+        <p class="build-copy">
+          Thoughtful layout, efficient envelope, luxury finishes. Deep garage and site-smart windows.
+        </p>
+        <div class="build-actions">
+          <button class="btn btn-ghost open-gallery"
+                  data-gallery='["/images/ext1.jpg","/images/ext2.jpg","/images/ext3.jpg","/images/int1.jpg","/images/int2.jpg","/images/int3.jpg","/images/int4.jpg"]'>
+            View photos
+          </button>
+          <a class="btn btn-primary" href="https://www.zillow.com/" target="_blank" rel="noopener">View on Zillow</a>
+        </div>
+      </div>
+    </article>
+    <!-- /Build Card -->
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>© <span id="year"></span> Lafayette Homes LLC</div>
+      <div class="foot-links">
+        <a href="/">Home</a>
+        <a href="/#projects">Gallery</a>
+        <a href="/#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Reuse the same lightbox -->
+  <div id="lightbox" aria-hidden="true" class="lightbox">
+    <button class="lb-close" aria-label="Close">×</button>
+    <button class="lb-prev" aria-label="Previous">‹</button>
+    <img class="lb-img" alt="" />
+    <button class="lb-next" aria-label="Next">›</button>
+  </div>
+
+  <script src="/main.js" defer></script>
 </body>
 </html>
-
