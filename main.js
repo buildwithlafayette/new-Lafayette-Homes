@@ -1,104 +1,81 @@
-/* ===== Simple Lightbox / Gallery =====
-   Works for:
-   1) Clicking any image in .gallery-grid (collects all images on that page)
-   2) Clicking any element with [data-gallery] that contains a CSV of image URLs
-*/
+// ---------- Simple gallery lightbox for home ----------
+const lightbox = document.getElementById('lightbox');
+if (lightbox) {
+  const lbImg = lightbox.querySelector('img');
+  const lbClose = lightbox.querySelector('.lightbox-close');
 
-(() => {
-  const body = document.body;
-
-  // Build the lightbox once
-  const lb = document.createElement('div');
-  lb.className = 'lightbox';
-  lb.innerHTML = `
-    <div class="lightbox-inner">
-      <button class="lb-btn lb-close" aria-label="Close">✕</button>
-      <button class="lb-btn lb-prev"  aria-label="Previous">‹</button>
-      <img class="lightbox-img" alt="">
-      <button class="lb-btn lb-next"  aria-label="Next">›</button>
-    </div>
-  `;
-  body.appendChild(lb);
-
-  const imgEl   = lb.querySelector('.lightbox-img');
-  const btnPrev = lb.querySelector('.lb-prev');
-  const btnNext = lb.querySelector('.lb-next');
-  const btnClose= lb.querySelector('.lb-close');
-
-  let photos = [];  // array of URLs
-  let idx = 0;
-
-  function openLightbox(list, startIndex = 0) {
-    photos = list;
-    idx = Math.max(0, Math.min(startIndex, photos.length-1));
-    render();
-    lb.classList.add('open');
-  }
-
-  function closeLightbox() {
-    lb.classList.remove('open');
-  }
-
-  function render() {
-    if (!photos.length) return;
-    imgEl.src = photos[idx];
-  }
-
-  function next() { idx = (idx + 1) % photos.length; render(); }
-  function prev() { idx = (idx - 1 + photos.length) % photos.length; render(); }
-
-  // Wire controls
-  btnNext.addEventListener('click', next);
-  btnPrev.addEventListener('click', prev);
-  btnClose.addEventListener('click', closeLightbox);
-  lb.addEventListener('click', (e) => {
-    // click outside image closes; buttons are pointer-events: auto
-    if (e.target === lb) closeLightbox();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') next();
-    if (e.key === 'ArrowLeft') prev();
-  });
-
-  // Basic swipe on touch
-  let startX = 0;
-  imgEl.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
-  imgEl.addEventListener('touchend', (e) => {
-    const dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 40) (dx < 0 ? next() : prev());
-  });
-
-  // Open from gallery grid (collects all images on the page)
-  const gridImgs = Array.from(document.querySelectorAll('.gallery-grid img'));
-  gridImgs.forEach((img, i) => {
+  document.querySelectorAll('.glight').forEach(img => {
     img.addEventListener('click', () => {
-      const list = gridImgs.map(n => n.src);
-      openLightbox(list, i);
+      lbImg.src = img.src;
+      lightbox.classList.add('show');
+      lightbox.setAttribute('aria-hidden', 'false');
     });
   });
 
-  // Open from any trigger with [data-gallery]="url1,url2,..."
-  document.querySelectorAll('[data-gallery]').forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      const list = trigger.dataset.gallery
-        .split(',')
-        .map(s => s.trim())
-        .filter(Boolean);
-      openLightbox(list, 0);
-    });
+  const closeLB = () => {
+    lightbox.classList.remove('show');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lbImg.src = '';
+  };
+  lbClose?.addEventListener('click', closeLB);
+  lightbox?.addEventListener('click', (e) => { if (e.target === lightbox) closeLB(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLB(); });
+}
+
+// ---------- Builds modal with next/prev ----------
+function initBuildModal(id) {
+  const modal = document.getElementById(`build-${id}`);
+  if (!modal) return;
+
+  const dialog = modal.querySelector('.build-modal-dialog');
+  const slidesWrap = modal.querySelector('.build-slides');
+  const imgs = Array.from(slidesWrap.querySelectorAll('img'));
+  const prev = slidesWrap.querySelector('.prev');
+  const next = slidesWrap.querySelector('.next');
+  const closeBtn = modal.querySelector('.build-close');
+
+  let idx = 0;
+  const show = (i) => {
+    imgs.forEach((im, n) => im.classList.toggle('active', n === i));
+  };
+  const open = () => {
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    idx = 0;
+    show(idx);
+  };
+  const close = () => {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+  };
+
+  prev.addEventListener('click', () => { idx = (idx - 1 + imgs.length) % imgs.length; show(idx); });
+  next.addEventListener('click', () => { idx = (idx + 1) % imgs.length; show(idx); });
+  closeBtn.addEventListener('click', close);
+  modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+  document.addEventListener('keydown', (e) => { if (modal.classList.contains('show') && e.key === 'Escape') close(); });
+
+  // tap the image to advance
+  imgs.forEach(im => im.addEventListener('click', () => {
+    idx = (idx + 1) % imgs.length; show(idx);
+  }));
+
+  // public open hook
+  return { open };
+}
+
+// wire up all build cards
+document.querySelectorAll('.open-build').forEach(btn => {
+  const id = btn.dataset.build;
+  const api = initBuildModal(id);
+  btn.addEventListener('click', () => api?.open());
+});
+
+// make non-input text not caret-editable (kills “blinking cursor” feeling)
+document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, div')
+  .forEach(el => {
+    if (el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA' && el.tagName !== 'A') {
+      el.setAttribute('contenteditable', 'false');
+      el.style.caretColor = 'transparent';
+    }
   });
-
-  /* ===== Minor UX niceties ===== */
-
-  // Make phone call chip actually call
-  document.querySelectorAll('[data-tel]').forEach(el => {
-    el.addEventListener('click', () => {
-      const num = el.getAttribute('data-tel');
-      window.location.href = `tel:${num}`;
-    });
-  });
-
-})();
