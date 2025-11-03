@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/builds", "destination": "/builds.html" },
+    { "source": "/thank-you", "destination": "/thank-you.html" }
+  ],
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true }
+  ]
+}
