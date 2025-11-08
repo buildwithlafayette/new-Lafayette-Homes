@@ -1,5 +1,5 @@
-// main.js — Lafayette Homes (v7)
-// Homepage lightbox + Builds modal slider with pixel-based translation.
+// main.js — Lafayette Homes (v8)
+// Lightbox + Builds modal slider using exact per-slide offsets (no drift).
 
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
@@ -61,7 +61,7 @@ function trapFocusKeydown(e, container) {
   });
 })();
 
-/* ---------- Builds modal + slider (pixel-based) ---------- */
+/* ---------- Builds modal + slider (offset-based, clamped) ---------- */
 (function initBuildsModal() {
   const openers = $$('.open-build');
   if (!openers.length) return;
@@ -71,7 +71,7 @@ function trapFocusKeydown(e, container) {
   function initModal(modal) {
     if (!modal || modals.has(modal)) return modals.get(modal);
 
-    const viewport = $('.build-slides', modal);   // the visible frame
+    const viewport = $('.build-slides', modal);   // visible frame
     const track = $('.track', modal);
     const slides = $$('.slide', modal);
     const thumbs = $$('.thumb', modal);
@@ -82,38 +82,42 @@ function trapFocusKeydown(e, container) {
 
     let index = 0;
     let prevFocus = null;
+    let offsets = [];
 
-    function slideWidth() {
-      // current visible width of the frame
-      return viewport.clientWidth || viewport.getBoundingClientRect().width || 0;
+    function computeOffsets() {
+      // exact left offset for each slide in track coordinates
+      offsets = slides.map(s => s.offsetLeft);
     }
 
-    function applyTransform() {
-      const dx = index * slideWidth();
-      // translate by exact pixels so it always moves exactly one frame
-      track.style.transform = `translate3d(${-dx}px, 0, 0)`;
-    }
-
-    function update() {
-      applyTransform();
-      if (counter) counter.textContent = `${index + 1} / ${slides.length}`;
+    function setActiveThumb() {
       thumbs.forEach((t, i) => t.classList.toggle('active', i === index));
     }
 
-    function go(n) {
-      index = (n + slides.length) % slides.length;
-      update();
+    function updateCounter() {
+      if (counter) counter.textContent = `${index + 1} / ${slides.length}`;
+    }
+
+    function goTo(i, { smooth = true } = {}) {
+      index = Math.max(0, Math.min(i, slides.length - 1));
+      const x = offsets[index] || 0;
+      track.style.transitionDuration = smooth ? '220ms' : '0ms';
+      track.style.transform = `translate3d(${-x}px, 0, 0)`;
+      setActiveThumb();
+      updateCounter();
+      // update disabled state for arrows
+      prevBtn?.toggleAttribute('disabled', index === 0);
+      nextBtn?.toggleAttribute('disabled', index === slides.length - 1);
     }
 
     function open(at = 0) {
-      index = Math.max(0, Math.min(at, slides.length - 1));
-      update();
+      computeOffsets();
+      goTo(at, { smooth: false });
       modal.classList.add('show');
       document.body.classList.add('modal-open');
       prevFocus = document.activeElement;
       closeBtn.focus();
-      // ensure correct position after opening (in case of layout changes)
-      requestAnimationFrame(applyTransform);
+      // re-measure after fonts/layout settle
+      requestAnimationFrame(() => { computeOffsets(); goTo(index, { smooth: false }); });
     }
 
     function close() {
@@ -122,29 +126,37 @@ function trapFocusKeydown(e, container) {
       if (prevFocus && prevFocus.focus) prevFocus.focus();
     }
 
-    prevBtn?.addEventListener('click', () => go(index - 1));
-    nextBtn?.addEventListener('click', () => go(index + 1));
+    // Controls
+    prevBtn?.addEventListener('click', () => goTo(index - 1));
+    nextBtn?.addEventListener('click', () => goTo(index + 1));
     closeBtn?.addEventListener('click', close);
     modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
 
+    // Thumbs
     thumbs.forEach((btn, i) => {
-      btn.addEventListener('click', () => (modal.classList.contains('show') ? go(i) : open(i)));
+      btn.addEventListener('click', () => (modal.classList.contains('show') ? goTo(i) : open(i)));
     });
 
-    // Keep position correct when the window resizes or device rotates
+    // Keep position correct on resize/orientation change
     window.addEventListener('resize', () => {
       if (!modal.classList.contains('show')) return;
-      applyTransform();
+      const old = offsets[index] || 0;
+      computeOffsets();
+      // keep the same slide centered after reflow
+      const x = offsets[index] || 0;
+      // If width changed a lot, snap without animation to prevent the “two images” flash
+      const smooth = Math.abs(x - old) < 8;
+      goTo(index, { smooth });
     });
 
     modal.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') return close();
-      if (e.key === 'ArrowLeft') return go(index - 1);
-      if (e.key === 'ArrowRight') return go(index + 1);
+      if (e.key === 'ArrowLeft') return goTo(index - 1);
+      if (e.key === 'ArrowRight') return goTo(index + 1);
       if (e.key === 'Tab') return trapFocusKeydown(e, modal);
     });
 
-    const api = { openAt: open, close, go };
+    const api = { openAt: open, close, goTo };
     modals.set(modal, api);
     return api;
   }
