@@ -8,8 +8,7 @@
   <link rel="canonical" href="https://buildwithlafayette.com/" />
   <link rel="icon" href="images/logo-square.png" type="image/png" />
   <link rel="apple-touch-icon" href="images/logo-square.png" />
-  <meta name="theme-color" content="#0b4a2c" />
-
+  <meta name="theme-color" content="#ffffff" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Lafayette Homes" />
   <meta property="og:title" content="Lafayette Homes — Upstate South Carolina Homebuilder" />
@@ -17,47 +16,15 @@
   <meta property="og:url" content="https://buildwithlafayette.com/" />
   <meta property="og:image" content="https://buildwithlafayette.com/images/hero.jpg" />
   <meta property="og:image:alt" content="Lafayette Homes exterior hero" />
-
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Lafayette Homes — Upstate South Carolina Homebuilder" />
   <meta name="twitter:description" content="Modern, efficient, site-smart homes built across Upstate South Carolina." />
   <meta name="twitter:image" content="https://buildwithlafayette.com/images/hero.jpg" />
-
   <link rel="preload" as="image" href="images/hero.jpg" imagesrcset="images/hero.jpg 1200w" imagesizes="100vw" />
-
-  <link rel="stylesheet" href="styles.css?v=9" />
-  <link rel="stylesheet" href="styles.mobile.css?v=9" media="(max-width: 768px)" />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Lafayette Homes",
-    "url": "https://buildwithlafayette.com/",
-    "image": "https://buildwithlafayette.com/images/logo-square.png",
-    "logo": "https://buildwithlafayette.com/images/logo-square.png",
-    "areaServed": "Upstate South Carolina",
-    "address": { "@type": "PostalAddress", "addressRegion": "SC", "addressCountry": "US" },
-    "telephone": "+1-864-555-1234"
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Lafayette Homes",
-    "url": "https://buildwithlafayette.com/",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Lafayette Homes",
-      "logo": { "@type": "ImageObject", "url": "https://buildwithlafayette.com/images/logo-square.png" }
-    }
-  }
-  </script>
+  <link rel="stylesheet" href="styles.css?v=14" />
+  <link rel="stylesheet" href="styles.mobile.css?v=14" media="(max-width: 768px)" />
 </head>
 <body>
-
 <a class="skip-link" href="#content">Skip to content</a>
 
 <header class="site-header" role="banner">
@@ -70,6 +37,9 @@
     <a href="builds.html">Builds</a>
     <a href="#process">Process</a>
     <a class="btn primary" href="#contact">Get a quote</a>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" title="Toggle light/dark">
+      <span class="emoji" aria-hidden="true">☀️</span><span class="label">Light</span>
+    </button>
   </nav>
 </header>
 
@@ -82,16 +52,8 @@
       <a class="btn primary" href="#contact">Start your quote</a>
       <a class="btn outline" href="builds.html" style="margin-left:8px;">See current builds</a>
     </div>
-
     <div class="hero-media">
-      <img
-        class="hero-img"
-        src="images/hero.jpg"
-        alt="Lafayette Homes exterior hero"
-        width="1600" height="900"
-        fetchpriority="high"
-        decoding="async"
-      />
+      <img class="hero-img" src="images/hero.jpg" alt="Lafayette Homes exterior hero" width="1600" height="900" fetchpriority="high" decoding="async" />
     </div>
   </section>
 
@@ -116,17 +78,7 @@
     </div>
   </section>
 
-  <!-- PROCESS -->
-  <section id="process" style="margin-top:32px;">
-    <h2 class="h2">Our process</h2>
-    <div class="steps three-col">
-      <article class="card"><h3>1) Walk your site</h3><p>We place the home for privacy, sun, and drainage.</p></article>
-      <article class="card"><h3>2) Price it right</h3><p>Transparent allowances and specs. No gotchas.</p></article>
-      <article class="card"><h3>3) Build clean</h3><p>Pro subs, tight schedules, tidy job sites.</p></article>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
+  <!-- RECENT SHOTS -->
   <section style="margin-top:32px;">
     <h2 class="h2">Recent shots</h2>
     <div class="gallery-grid">
@@ -191,6 +143,6 @@
   <img src="" alt="" />
 </div>
 
-<script src="main.js?v=6" defer></script>
+<script src="main.js?v=9" defer></script>
 </body>
 </html>

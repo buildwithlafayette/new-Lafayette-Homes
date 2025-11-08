@@ -4,11 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Current Builds — Lafayette Homes</title>
-  <link rel="stylesheet" href="styles.css?v=10" />
-  <link rel="stylesheet" href="styles.mobile.css?v=10" media="(max-width: 768px)" />
+  <link rel="stylesheet" href="styles.css?v=14" />
+  <link rel="stylesheet" href="styles.mobile.css?v=14" media="(max-width: 768px)" />
 </head>
 <body>
-
 <a class="skip-link" href="#content">Skip to content</a>
 
 <header class="site-header" role="banner">
@@ -21,6 +20,9 @@
     <a href="builds.html" aria-current="page">Builds</a>
     <a href="index.html#process">Process</a>
     <a class="btn primary" href="index.html#contact">Get a quote</a>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" title="Toggle light/dark">
+      <span class="emoji" aria-hidden="true">☀️</span><span class="label">Light</span>
+    </button>
   </nav>
 </header>
 
@@ -46,16 +48,13 @@
     </article>
   </section>
 
-  <!-- Modal (hidden until opened) -->
+  <!-- Modal -->
   <div class="build-modal" id="build-1" aria-hidden="true">
     <div class="build-modal-dialog">
       <button class="build-close" aria-label="Close">×</button>
 
-      <!-- Slider area -->
       <div class="build-slides" aria-roledescription="carousel">
         <button class="nav prev" aria-label="Previous image">‹</button>
-
-        <!-- TRACK: each .slide is 100% width; we translateX to change frames -->
         <div class="track" role="group">
           <figure class="slide" aria-label="1 of 7"><img src="images/ext1.jpg" alt="Front elevation" /></figure>
           <figure class="slide" aria-label="2 of 7"><img src="images/ext2.jpg" alt="Rear elevation" /></figure>
@@ -65,12 +64,10 @@
           <figure class="slide" aria-label="6 of 7"><img src="images/int3.jpg" alt="Primary suite" /></figure>
           <figure class="slide" aria-label="7 of 7"><img src="images/int4.jpg" alt="Bathroom" /></figure>
         </div>
-
         <button class="nav next" aria-label="Next image">›</button>
         <div class="counter" aria-live="polite">1 / 7</div>
       </div>
 
-      <!-- Thumbnails moved OUTSIDE the slide area so they’re never hidden -->
       <div class="thumbs" aria-label="Thumbnails">
         <button class="thumb" data-i="0"><img src="images/ext1.jpg" alt="Front elevation" /></button>
         <button class="thumb" data-i="1"><img src="images/ext2.jpg" alt="Rear elevation" /></button>
@@ -107,6 +104,6 @@
   <img src="" alt="" />
 </div>
 
-<script src="main.js?v=6" defer></script>
+<script src="main.js?v=9" defer></script>
 </body>
 </html>
