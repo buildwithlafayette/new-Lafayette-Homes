@@ -36,8 +36,8 @@
   <link rel="preload" as="image" href="images/hero.jpg" imagesrcset="images/hero.jpg 1200w" imagesizes="100vw" />
 
   <!-- Styles -->
-  <link rel="stylesheet" href="styles.css?v=5" />
-  <link rel="stylesheet" href="styles.mobile.css?v=5" media="(max-width: 768px)" />
+  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="styles.mobile.css?v=7" media="(max-width: 768px)" />
 
   <!-- Structured data: LocalBusiness -->
   <script type="application/ld+json">
@@ -96,8 +96,11 @@
       <a class="btn primary" href="#contact">Start your quote</a>
       <a class="btn outline" href="builds.html" style="margin-left:8px;">See current builds</a>
     </div>
-    <div style="margin-top:16px; border-radius:16px; overflow:hidden;">
+
+    <!-- Fixed-aspect hero wrapper -->
+    <div class="hero-media">
       <img
+        class="hero-img"
         src="images/hero.jpg"
         alt="Lafayette Homes exterior hero"
         width="1600" height="900"
@@ -112,7 +115,7 @@
     <h2 class="h2">Popular plans</h2>
     <p class="muted">Right-sized footprints with real storage, natural light, and traffic flow that makes sense.</p>
 
-    <div class="cards" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-top:12px;">
+    <div class="cards three-col">
       <article class="card">
         <h3 class="h3">Plan 1826</h3>
         <p>3 bed · 2 bath · ~1,826 sq ft</p>
@@ -134,7 +137,7 @@
   <!-- WARRANTY / VALUE -->
   <section style="margin-top:32px;">
     <h2 class="h2">Strong warranty, better specs</h2>
-    <div class="warranty-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:12px;">
+    <div class="warranty-grid three-col">
       <div class="card warranty">
         <h4>Structural — 10 years</h4>
         <p>Beyond the SC minimums most builders stick to.</p>
@@ -153,7 +156,7 @@
   <!-- PROCESS -->
   <section id="process" style="margin-top:32px;">
     <h2 class="h2">Our process</h2>
-    <div class="steps" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:12px;">
+    <div class="steps three-col">
       <article class="card">
         <h3>1) Walk your site</h3>
         <p>We place the home for privacy, sun, and drainage. No cookie-cutter subdivisions required.</p>
@@ -169,24 +172,24 @@
     </div>
   </section>
 
-  <!-- GALLERY (click to lightbox) -->
+  <!-- GALLERY -->
   <section style="margin-top:32px;">
     <h2 class="h2">Recent shots</h2>
-    <div class="gallery-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px; margin-top:12px;">
-      <img class="glight" src="images/ext1.jpg" alt="Exterior elevation" width="1200" height="800" loading="lazy" decoding="async" />
-      <img class="glight" src="images/ext2.jpg" alt="Rear yard and porch" width="1200" height="800" loading="lazy" decoding="async" />
-      <img class="glight" src="images/ext3.jpg" alt="Side elevation" width="1200" height="800" loading="lazy" decoding="async" />
-      <img class="glight" src="images/int1.jpg" alt="Kitchen with island" width="1200" height="800" loading="lazy" decoding="async" />
-      <img class="glight" src="images/int2.jpg" alt="Living room" width="1200" height="800" loading="lazy" decoding="async" />
-      <img class="glight" src="images/int3.jpg" alt="Primary suite" width="1200" height="800" loading="lazy" decoding="async" />
+    <div class="gallery-grid">
+      <img class="glight gallery-tile" src="images/ext1.jpg" alt="Exterior elevation" loading="lazy" decoding="async" />
+      <img class="glight gallery-tile" src="images/ext2.jpg" alt="Rear yard and porch" loading="lazy" decoding="async" />
+      <img class="glight gallery-tile" src="images/ext3.jpg" alt="Side elevation" loading="lazy" decoding="async" />
+      <img class="glight gallery-tile" src="images/int1.jpg" alt="Kitchen with island" loading="lazy" decoding="async" />
+      <img class="glight gallery-tile" src="images/int2.jpg" alt="Living room" loading="lazy" decoding="async" />
+      <img class="glight gallery-tile" src="images/int3.jpg" alt="Primary suite" loading="lazy" decoding="async" />
     </div>
   </section>
 
-  <!-- CONTACT (posts to your serverless email endpoint) -->
+  <!-- CONTACT -->
   <section id="contact" style="margin-top:32px;">
     <h2 class="h2">Get a quote</h2>
     <div class="contact-grid">
-      <div class="contact-cards" style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+      <div class="contact-cards two-col">
         <div class="card">
           <h3 class="h3">Tell us about your lot</h3>
           <p class="muted">Address or pin, trees, slope, utilities—whatever you know helps.</p>
@@ -198,10 +201,8 @@
       </div>
 
       <form class="card form" action="/api/contact" method="POST" style="margin-top:12px;">
-        <!-- Honeypot spam trap -->
         <input type="text" name="_gotcha" autocomplete="off" tabindex="-1" style="position:absolute; left:-5000px; height:0; width:0; opacity:0;" />
-
-        <div class="row" style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+        <div class="row two-col">
           <div>
             <label for="name">Name</label>
             <input id="name" name="name" placeholder="Your name" required />
@@ -219,14 +220,12 @@
             <input id="location" name="location" placeholder="City / address / pin" />
           </div>
         </div>
-
-        <div class="row" style="display:grid; grid-template-columns: 1fr; gap:12px; margin-top:12px;">
+        <div class="row one-col">
           <div>
             <label for="notes">Notes</label>
             <textarea id="notes" name="notes" placeholder="Tell us about your lot, plan, timing, and budget…" rows="5"></textarea>
           </div>
         </div>
-
         <div style="margin-top:12px;">
           <button class="btn primary" type="submit">Send</button>
           <a class="btn outline" href="builds.html" style="margin-left:8px;">See current builds</a>
@@ -255,13 +254,13 @@
   </div>
 </footer>
 
-<!-- Lightbox for gallery -->
+<!-- Lightbox -->
 <div id="lightbox" class="lightbox" aria-hidden="true">
   <button class="lightbox-close" aria-label="Close">×</button>
   <img src="" alt="" />
 </div>
 
-<!-- Scripts (deferred) -->
-<script src="main.js?v=5" defer></script>
+<!-- Scripts -->
+<script src="main.js?v=7" defer></script>
 </body>
 </html>
