@@ -1,33 +1,11 @@
-/* styles.mobile.css — overrides for ≤768px */
-
-:root { --pad: clamp(16px, 4vw, 22px); }
-.container{ width:100%; padding:0 var(--pad); }
-
-.site-header{ padding:10px var(--pad); gap:10px; }
-.nav{ gap:12px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
-.nav::-webkit-scrollbar{ display:none; }
-.call-chip{ padding:8px 12px; font-size:14px; border-radius:12px; }
-
-.hero{ min-height: 64vh; }
-.hero-inner{ padding:64px 0 24px; }
-.hero-title{ font-size: clamp(32px, 8.5vw, 42px); }
-.hero-sub{ font-size:16px; max-width: 42ch; }
-.hero-ctas{ display:grid; grid-template-columns:1fr; gap:10px; }
-.btn{ width:100%; }
-
-.section{ padding:48px 0; }
-.features{ grid-template-columns: 1fr 1fr; }
-.warranty-grid{ grid-template-columns: 1fr; }
-.steps{ grid-template-columns: 1fr 1fr; }
-.gallery-grid{ grid-template-columns: 1fr 1fr; }
-@media (max-width:420px){ .gallery-grid{ grid-template-columns:1fr; } }
-
-.contact-grid{ grid-template-columns:1fr; gap:16px; }
-.contact-cards{ grid-template-columns:1fr; }
-.form .row{ grid-template-columns:1fr; }
-
-.footer-grid{ flex-direction:column; align-items:flex-start; gap:8px; }
-
-/* Builds page */
-.build-card{ grid-template-columns:1fr !important; }
-.build-thumb{ height:220px; }
+/* Mobile-only refinements — kept minimal to avoid overriding desktop rules */
+@media (max-width: 768px){
+  .btn-row{ flex-direction:column; align-items:stretch; }
+  .btn-row .btn{ width:100%; text-align:center; }
+  .build-card{ grid-template-columns:1fr; }
+  .site-header .site-nav{ gap:8px; flex-wrap:wrap; }
+}
+/* On touch devices, never show the skip link */
+@media (pointer: coarse){
+  .skip-link{ display:none !important; }
+}
