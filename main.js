@@ -1,4 +1,5 @@
-// main.js — Lafayette Homes
+// main.js — Lafayette Homes (v7)
+// Homepage lightbox + Builds modal slider with pixel-based translation.
 
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
@@ -23,7 +24,7 @@ function trapFocusKeydown(e, container) {
   }
 }
 
-/* Lightbox on homepage */
+/* ---------- Homepage gallery lightbox ---------- */
 (function initLightbox() {
   const lightbox = $('#lightbox');
   if (!lightbox) return;
@@ -32,7 +33,8 @@ function trapFocusKeydown(e, container) {
   let prevFocus = null;
 
   function open(src, alt) {
-    img.src = src; img.alt = alt || '';
+    img.src = src;
+    img.alt = alt || '';
     lightbox.classList.add('show');
     document.body.classList.add('modal-open');
     prevFocus = document.activeElement;
@@ -44,10 +46,12 @@ function trapFocusKeydown(e, container) {
     img.src = '';
     if (prevFocus && prevFocus.focus) prevFocus.focus();
   }
+
   $$('.glight').forEach((el) => {
     el.style.cursor = 'zoom-in';
     el.addEventListener('click', () => open(el.currentSrc || el.src, el.alt));
   });
+
   closeBtn.addEventListener('click', close);
   lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
   window.addEventListener('keydown', (e) => {
@@ -57,7 +61,7 @@ function trapFocusKeydown(e, container) {
   });
 })();
 
-/* Builds modal + slider */
+/* ---------- Builds modal + slider (pixel-based) ---------- */
 (function initBuildsModal() {
   const openers = $$('.open-build');
   if (!openers.length) return;
@@ -67,6 +71,7 @@ function trapFocusKeydown(e, container) {
   function initModal(modal) {
     if (!modal || modals.has(modal)) return modals.get(modal);
 
+    const viewport = $('.build-slides', modal);   // the visible frame
     const track = $('.track', modal);
     const slides = $$('.slide', modal);
     const thumbs = $$('.thumb', modal);
@@ -78,12 +83,28 @@ function trapFocusKeydown(e, container) {
     let index = 0;
     let prevFocus = null;
 
+    function slideWidth() {
+      // current visible width of the frame
+      return viewport.clientWidth || viewport.getBoundingClientRect().width || 0;
+    }
+
+    function applyTransform() {
+      const dx = index * slideWidth();
+      // translate by exact pixels so it always moves exactly one frame
+      track.style.transform = `translate3d(${-dx}px, 0, 0)`;
+    }
+
     function update() {
-      track.style.transform = `translateX(-${index * 100}%)`;
+      applyTransform();
       if (counter) counter.textContent = `${index + 1} / ${slides.length}`;
       thumbs.forEach((t, i) => t.classList.toggle('active', i === index));
     }
-    function go(n) { index = (n + slides.length) % slides.length; update(); }
+
+    function go(n) {
+      index = (n + slides.length) % slides.length;
+      update();
+    }
+
     function open(at = 0) {
       index = Math.max(0, Math.min(at, slides.length - 1));
       update();
@@ -91,7 +112,10 @@ function trapFocusKeydown(e, container) {
       document.body.classList.add('modal-open');
       prevFocus = document.activeElement;
       closeBtn.focus();
+      // ensure correct position after opening (in case of layout changes)
+      requestAnimationFrame(applyTransform);
     }
+
     function close() {
       modal.classList.remove('show');
       document.body.classList.remove('modal-open');
@@ -102,7 +126,17 @@ function trapFocusKeydown(e, container) {
     nextBtn?.addEventListener('click', () => go(index + 1));
     closeBtn?.addEventListener('click', close);
     modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
-    thumbs.forEach((btn, i) => btn.addEventListener('click', () => (modal.classList.contains('show') ? go(i) : open(i))));
+
+    thumbs.forEach((btn, i) => {
+      btn.addEventListener('click', () => (modal.classList.contains('show') ? go(i) : open(i)));
+    });
+
+    // Keep position correct when the window resizes or device rotates
+    window.addEventListener('resize', () => {
+      if (!modal.classList.contains('show')) return;
+      applyTransform();
+    });
+
     modal.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') return close();
       if (e.key === 'ArrowLeft') return go(index - 1);
