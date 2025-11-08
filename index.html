@@ -32,14 +32,14 @@
   <meta name="twitter:description" content="Modern, efficient, site-smart homes built across Upstate South Carolina." />
   <meta name="twitter:image" content="https://buildwithlafayette.com/images/hero.jpg" />
 
-  <!-- Performance: LCP -->
+  <!-- Performance: preload hero for fast LCP -->
   <link rel="preload" as="image" href="images/hero.jpg" imagesrcset="images/hero.jpg 1200w" imagesizes="100vw" />
 
   <!-- Styles -->
-  <link rel="stylesheet" href="styles.css?v=4" />
-  <link rel="stylesheet" href="styles.mobile.css?v=4" media="(max-width: 768px)" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.mobile.css?v=5" media="(max-width: 768px)" />
 
-  <!-- LocalBusiness JSON-LD -->
+  <!-- Structured data: LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -50,19 +50,36 @@
     "logo": "https://buildwithlafayette.com/images/logo-square.png",
     "areaServed": "Upstate South Carolina",
     "address": { "@type": "PostalAddress", "addressRegion": "SC", "addressCountry": "US" },
-    "telephone": "+1-000-000-0000"
+    "telephone": "+1-864-555-1234"
+  }
+  </script>
+
+  <!-- Structured data: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Lafayette Homes",
+    "url": "https://buildwithlafayette.com/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Lafayette Homes",
+      "logo": { "@type": "ImageObject", "url": "https://buildwithlafayette.com/images/logo-square.png" }
+    }
   }
   </script>
 </head>
 <body>
 
-<header class="site-header">
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="site-header" role="banner">
   <a class="brand" href="index.html">
-    <img src="images/logo-square.png" alt="Lafayette Homes logo" />
+    <img src="images/logo-square.png" alt="Lafayette Homes logo" width="36" height="36" />
     <span>Lafayette Homes</span>
   </a>
 
-  <nav class="site-nav">
+  <nav class="site-nav" role="navigation" aria-label="Main">
     <a href="#plans">Plans</a>
     <a href="builds.html">Builds</a>
     <a href="#process">Process</a>
@@ -80,7 +97,13 @@
       <a class="btn outline" href="builds.html" style="margin-left:8px;">See current builds</a>
     </div>
     <div style="margin-top:16px; border-radius:16px; overflow:hidden;">
-      <img src="images/hero.jpg" alt="Lafayette Homes exterior hero" />
+      <img
+        src="images/hero.jpg"
+        alt="Lafayette Homes exterior hero"
+        width="1600" height="900"
+        fetchpriority="high"
+        decoding="async"
+      />
     </div>
   </section>
 
@@ -150,12 +173,12 @@
   <section style="margin-top:32px;">
     <h2 class="h2">Recent shots</h2>
     <div class="gallery-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px; margin-top:12px;">
-      <img class="glight" src="images/ext1.jpg" alt="Exterior elevation" />
-      <img class="glight" src="images/ext2.jpg" alt="Rear yard and porch" />
-      <img class="glight" src="images/ext3.jpg" alt="Side elevation" />
-      <img class="glight" src="images/int1.jpg" alt="Kitchen with island" />
-      <img class="glight" src="images/int2.jpg" alt="Living room" />
-      <img class="glight" src="images/int3.jpg" alt="Primary suite" />
+      <img class="glight" src="images/ext1.jpg" alt="Exterior elevation" width="1200" height="800" loading="lazy" decoding="async" />
+      <img class="glight" src="images/ext2.jpg" alt="Rear yard and porch" width="1200" height="800" loading="lazy" decoding="async" />
+      <img class="glight" src="images/ext3.jpg" alt="Side elevation" width="1200" height="800" loading="lazy" decoding="async" />
+      <img class="glight" src="images/int1.jpg" alt="Kitchen with island" width="1200" height="800" loading="lazy" decoding="async" />
+      <img class="glight" src="images/int2.jpg" alt="Living room" width="1200" height="800" loading="lazy" decoding="async" />
+      <img class="glight" src="images/int3.jpg" alt="Primary suite" width="1200" height="800" loading="lazy" decoding="async" />
     </div>
   </section>
 
@@ -174,7 +197,6 @@
         </div>
       </div>
 
-      <!-- IMPORTANT: this action hits /api/contact (Vercel Edge function using Resend) -->
       <form class="card form" action="/api/contact" method="POST" style="margin-top:12px;">
         <!-- Honeypot spam trap -->
         <input type="text" name="_gotcha" autocomplete="off" tabindex="-1" style="position:absolute; left:-5000px; height:0; width:0; opacity:0;" />
@@ -186,7 +208,7 @@
           </div>
           <div>
             <label for="phone">Phone</label>
-            <input id="phone" name="phone" placeholder="(555) 555-5555" />
+            <input id="phone" name="phone" placeholder="(864) 555-1234" />
           </div>
           <div>
             <label for="email">Email</label>
@@ -217,10 +239,14 @@
 <footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <img src="images/logo-square.png" alt="Lafayette Homes logo" />
-      <p>Upstate South Carolina homebuilder — modern, efficient, site-smart homes.</p>
+      <img src="images/logo-square.png" alt="Lafayette Homes logo" width="40" height="40" />
+      <p>
+        Lafayette Homes · Upstate South Carolina<br>
+        <a href="tel:+18645551234">+1 (864) 555-1234</a> ·
+        <a href="mailto:info@buildwithlafayette.com">info@buildwithlafayette.com</a>
+      </p>
     </div>
-    <nav class="footer-links">
+    <nav class="footer-links" aria-label="Footer">
       <a href="#plans">Plans</a>
       <a href="builds.html">Builds</a>
       <a href="#process">Process</a>
@@ -235,7 +261,7 @@
   <img src="" alt="" />
 </div>
 
-<!-- Scripts -->
-<script src="main.js?v=4"></script>
+<!-- Scripts (deferred) -->
+<script src="main.js?v=5" defer></script>
 </body>
 </html>

@@ -4,18 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Current Builds — Lafayette Homes</title>
-  <link rel="stylesheet" href="styles.css?v=4" />
-  <link rel="stylesheet" href="styles.mobile.css?v=4" media="(max-width: 768px)" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.mobile.css?v=5" media="(max-width: 768px)" />
 </head>
 <body>
 
-<header class="site-header">
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="site-header" role="banner">
   <a class="brand" href="index.html">
-    <img src="images/logo-square.png" alt="Lafayette Homes logo" />
+    <img src="images/logo-square.png" alt="Lafayette Homes logo" width="36" height="36" />
     <span>Lafayette Homes</span>
   </a>
 
-  <nav class="site-nav">
+  <nav class="site-nav" role="navigation" aria-label="Main">
     <a href="index.html#plans">Plans</a>
     <a href="builds.html" aria-current="page">Builds</a>
     <a href="index.html#process">Process</a>
@@ -32,17 +34,14 @@
   <section class="builds">
     <!-- Build card -->
     <article class="build-card card" data-build="1">
-      <img class="build-thumb" src="images/ext1.jpg" alt="Exterior photo of the home" />
+      <img class="build-thumb" src="images/ext1.jpg" alt="Exterior photo of the home" width="1200" height="800" loading="lazy" decoding="async" />
       <div class="build-body">
         <h2 class="h3">Plan 1826 — Easley, SC</h2>
         <ul class="build-specs">
-          <li>3 bed</li>
-          <li>2 bath</li>
-          <li>~1,826 sq ft</li>
+          <li>3 bed</li><li>2 bath</li><li>~1,826 sq ft</li>
         </ul>
         <p class="muted">Open-concept living, upgraded kitchen, covered back porch, and a spacious primary suite.</p>
         <div class="build-price">$699,999</div>
-
         <div class="build-actions">
           <button class="btn outline open-build" data-build="1">View photos</button>
           <a class="btn primary" href="https://zillow.com" target="_blank" rel="noopener">Open Zillow</a>
@@ -56,37 +55,36 @@
     <div class="build-modal-dialog">
       <button class="build-close" aria-label="Close">×</button>
 
-      <!-- REPLACE/KEEP this slides block as-is. Update image list if you want -->
       <div class="build-slides" aria-roledescription="carousel">
         <button class="nav prev" aria-label="Previous image">‹</button>
 
         <div class="track" role="group">
           <figure class="slide" aria-label="1 of 7">
-            <img src="images/ext1.jpg" alt="Front elevation" />
+            <img src="images/ext1.jpg" alt="Front elevation" width="1600" height="1066" />
             <figcaption class="visually-hidden">Front elevation</figcaption>
           </figure>
           <figure class="slide" aria-label="2 of 7">
-            <img src="images/ext2.jpg" alt="Rear elevation" />
+            <img src="images/ext2.jpg" alt="Rear elevation" width="1600" height="1066" />
             <figcaption class="visually-hidden">Rear elevation</figcaption>
           </figure>
           <figure class="slide" aria-label="3 of 7">
-            <img src="images/ext3.jpg" alt="Side elevation" />
+            <img src="images/ext3.jpg" alt="Side elevation" width="1600" height="1066" />
             <figcaption class="visually-hidden">Side elevation</figcaption>
           </figure>
           <figure class="slide" aria-label="4 of 7">
-            <img src="images/int1.jpg" alt="Kitchen" />
+            <img src="images/int1.jpg" alt="Kitchen" width="1600" height="1066" />
             <figcaption class="visually-hidden">Kitchen</figcaption>
           </figure>
           <figure class="slide" aria-label="5 of 7">
-            <img src="images/int2.jpg" alt="Living room" />
+            <img src="images/int2.jpg" alt="Living room" width="1600" height="1066" />
             <figcaption class="visually-hidden">Living room</figcaption>
           </figure>
           <figure class="slide" aria-label="6 of 7">
-            <img src="images/int3.jpg" alt="Primary suite" />
+            <img src="images/int3.jpg" alt="Primary suite" width="1600" height="1066" />
             <figcaption class="visually-hidden">Primary suite</figcaption>
           </figure>
           <figure class="slide" aria-label="7 of 7">
-            <img src="images/int4.jpg" alt="Bathroom" />
+            <img src="images/int4.jpg" alt="Bathroom" width="1600" height="1066" />
             <figcaption class="visually-hidden">Bathroom</figcaption>
           </figure>
         </div>
@@ -94,13 +92,13 @@
         <button class="nav next" aria-label="Next image">›</button>
 
         <div class="thumbs" aria-label="Thumbnails">
-          <button class="thumb" data-i="0"><img src="images/ext1.jpg" alt="Front elevation" /></button>
-          <button class="thumb" data-i="1"><img src="images/ext2.jpg" alt="Rear elevation" /></button>
-          <button class="thumb" data-i="2"><img src="images/ext3.jpg" alt="Side elevation" /></button>
-          <button class="thumb" data-i="3"><img src="images/int1.jpg" alt="Kitchen" /></button>
-          <button class="thumb" data-i="4"><img src="images/int2.jpg" alt="Living room" /></button>
-          <button class="thumb" data-i="5"><img src="images/int3.jpg" alt="Primary suite" /></button>
-          <button class="thumb" data-i="6"><img src="images/int4.jpg" alt="Bathroom" /></button>
+          <button class="thumb" data-i="0"><img src="images/ext1.jpg" alt="Front elevation" width="192" height="128" /></button>
+          <button class="thumb" data-i="1"><img src="images/ext2.jpg" alt="Rear elevation" width="192" height="128" /></button>
+          <button class="thumb" data-i="2"><img src="images/ext3.jpg" alt="Side elevation" width="192" height="128" /></button>
+          <button class="thumb" data-i="3"><img src="images/int1.jpg" alt="Kitchen" width="192" height="128" /></button>
+          <button class="thumb" data-i="4"><img src="images/int2.jpg" alt="Living room" width="192" height="128" /></button>
+          <button class="thumb" data-i="5"><img src="images/int3.jpg" alt="Primary suite" width="192" height="128" /></button>
+          <button class="thumb" data-i="6"><img src="images/int4.jpg" alt="Bathroom" width="192" height="128" /></button>
         </div>
 
         <div class="counter" aria-live="polite">1 / 7</div>
@@ -113,10 +111,14 @@
 <footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <img src="images/logo-square.png" alt="Lafayette Homes logo" />
-      <p>Upstate South Carolina homebuilder — modern, efficient, site-smart homes.</p>
+      <img src="images/logo-square.png" alt="Lafayette Homes logo" width="40" height="40" />
+      <p>
+        Lafayette Homes · Upstate South Carolina<br>
+        <a href="tel:+18645551234">+1 (864) 555-1234</a> ·
+        <a href="mailto:info@buildwithlafayette.com">info@buildwithlafayette.com</a>
+      </p>
     </div>
-    <nav class="footer-links">
+    <nav class="footer-links" aria-label="Footer">
       <a href="index.html#plans">Plans</a>
       <a href="builds.html">Builds</a>
       <a href="index.html#process">Process</a>
@@ -125,12 +127,12 @@
   </div>
 </footer>
 
-<!-- Lightbox (used on homepage gallery; harmless to leave here) -->
+<!-- Lightbox (harmless to leave here) -->
 <div id="lightbox" class="lightbox" aria-hidden="true">
   <button class="lightbox-close" aria-label="Close">×</button>
   <img src="" alt="" />
 </div>
 
-<script src="main.js?v=4"></script>
+<script src="main.js?v=5" defer></script>
 </body>
 </html>

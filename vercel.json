@@ -1,9 +1,14 @@
 {
-  "rewrites": [
-    { "source": "/builds", "destination": "/builds.html" },
-    { "source": "/thank-you", "destination": "/thank-you.html" }
-  ],
-  "redirects": [
-    { "source": "/index.html", "destination": "/", "permanent": true }
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=()" }
+      ]
+    }
   ]
 }
