@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Current Builds — Lafayette Homes</title>
-  <link rel="stylesheet" href="styles.css?v=16" />
-  <link rel="stylesheet" href="styles.mobile.css?v=16" media="(max-width: 768px)" />
+  <link rel="stylesheet" href="styles.css?v=17" />
+  <link rel="stylesheet" href="styles.mobile.css?v=17" media="(max-width: 768px)" />
 </head>
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
@@ -34,7 +34,6 @@
 
   <section class="builds">
     <article class="build-card card" data-build="1">
-      <!-- Eager-load the first image so you don’t see a long blank gap -->
       <img class="build-thumb" src="images/ext1.jpg" alt="Exterior photo of the home" width="1200" height="900" loading="eager" decoding="async" />
       <div class="build-body">
         <h2 class="h3">Plan 1826 — Easley, SC</h2>
@@ -49,11 +48,10 @@
     </article>
   </section>
 
-  <!-- Modal -->
+  <!-- Modal (unchanged) -->
   <div class="build-modal" id="build-1" aria-hidden="true">
     <div class="build-modal-dialog">
       <button class="build-close" aria-label="Close">×</button>
-
       <div class="build-slides" aria-roledescription="carousel">
         <button class="nav prev" aria-label="Previous image">‹</button>
         <div class="track" role="group">
@@ -68,7 +66,6 @@
         <button class="nav next" aria-label="Next image">›</button>
         <div class="counter" aria-live="polite">1 / 7</div>
       </div>
-
       <div class="thumbs" aria-label="Thumbnails">
         <button class="thumb" data-i="0"><img src="images/ext1.jpg" alt="Front elevation" /></button>
         <button class="thumb" data-i="1"><img src="images/ext2.jpg" alt="Rear elevation" /></button>
