@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Current Builds — Lafayette Homes</title>
-  <link rel="stylesheet" href="styles.css?v=15" />
-  <link rel="stylesheet" href="styles.mobile.css?v=15" media="(max-width: 768px)" />
+  <link rel="stylesheet" href="styles.css?v=16" />
+  <link rel="stylesheet" href="styles.mobile.css?v=16" media="(max-width: 768px)" />
 </head>
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
@@ -29,18 +29,19 @@
 <main id="content" class="container">
   <section class="hero small">
     <h1 class="h1">Current builds</h1>
-    <p>A quick look at homes we’re building now. Want something similar? Tap “Get a quote”.</p>
+    <p class="muted">A quick look at homes we’re building now. Want something similar? Tap “Get a quote”.</p>
   </section>
 
   <section class="builds">
     <article class="build-card card" data-build="1">
-      <img class="build-thumb" src="images/ext1.jpg" alt="Exterior photo of the home" width="1200" height="800" loading="lazy" decoding="async" />
+      <!-- Eager-load the first image so you don’t see a long blank gap -->
+      <img class="build-thumb" src="images/ext1.jpg" alt="Exterior photo of the home" width="1200" height="900" loading="eager" decoding="async" />
       <div class="build-body">
         <h2 class="h3">Plan 1826 — Easley, SC</h2>
         <ul class="build-specs"><li>3 bed</li><li>2 bath</li><li>~1,826 sq ft</li></ul>
         <p class="muted">Open-concept living, upgraded kitchen, covered back porch, and a spacious primary suite.</p>
         <div class="build-price">$699,999</div>
-        <div class="build-actions">
+        <div class="build-actions btn-row">
           <button class="btn outline open-build" data-build="1">View photos</button>
           <a class="btn primary" href="https://zillow.com" target="_blank" rel="noopener">Open Zillow</a>
         </div>
