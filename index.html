@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Basics -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- SEO -->
   <title>Lafayette Homes — Upstate South Carolina Homebuilder</title>
   <meta name="description" content="Modern, efficient, site-smart homes built across Upstate South Carolina. Get a custom plan, real pricing, and a builder who actually answers the phone." />
   <link rel="canonical" href="https://buildwithlafayette.com/" />
@@ -31,13 +33,7 @@
   <meta name="twitter:image" content="https://buildwithlafayette.com/images/hero.jpg" />
 
   <!-- Performance: LCP -->
-  <link
-    rel="preload"
-    as="image"
-    href="images/hero.jpg"
-    imagesrcset="images/hero.jpg 1200w"
-    imagesizes="100vw"
-  />
+  <link rel="preload" as="image" href="images/hero.jpg" imagesrcset="images/hero.jpg 1200w" imagesizes="100vw" />
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css?v=4" />
@@ -53,11 +49,7 @@
     "image": "https://buildwithlafayette.com/images/logo-square.png",
     "logo": "https://buildwithlafayette.com/images/logo-square.png",
     "areaServed": "Upstate South Carolina",
-    "address": {
-      "@type": "PostalAddress",
-      "addressRegion": "SC",
-      "addressCountry": "US"
-    },
+    "address": { "@type": "PostalAddress", "addressRegion": "SC", "addressCountry": "US" },
     "telephone": "+1-000-000-0000"
   }
   </script>
@@ -167,7 +159,7 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- CONTACT (posts to your serverless email endpoint) -->
   <section id="contact" style="margin-top:32px;">
     <h2 class="h2">Get a quote</h2>
     <div class="contact-grid">
@@ -182,7 +174,11 @@
         </div>
       </div>
 
-      <form class="card form" action="thank-you.html" method="GET" style="margin-top:12px;">
+      <!-- IMPORTANT: this action hits /api/contact (Vercel Edge function using Resend) -->
+      <form class="card form" action="/api/contact" method="POST" style="margin-top:12px;">
+        <!-- Honeypot spam trap -->
+        <input type="text" name="_gotcha" autocomplete="off" tabindex="-1" style="position:absolute; left:-5000px; height:0; width:0; opacity:0;" />
+
         <div class="row" style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
           <div>
             <label for="name">Name</label>
@@ -201,12 +197,14 @@
             <input id="location" name="location" placeholder="City / address / pin" />
           </div>
         </div>
+
         <div class="row" style="display:grid; grid-template-columns: 1fr; gap:12px; margin-top:12px;">
           <div>
             <label for="notes">Notes</label>
             <textarea id="notes" name="notes" placeholder="Tell us about your lot, plan, timing, and budget…" rows="5"></textarea>
           </div>
         </div>
+
         <div style="margin-top:12px;">
           <button class="btn primary" type="submit">Send</button>
           <a class="btn outline" href="builds.html" style="margin-left:8px;">See current builds</a>
@@ -237,6 +235,7 @@
   <img src="" alt="" />
 </div>
 
+<!-- Scripts -->
 <script src="main.js?v=4"></script>
 </body>
 </html>
