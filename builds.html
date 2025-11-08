@@ -5,65 +5,130 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Current Builds — Lafayette Homes</title>
   <link rel="stylesheet" href="styles.css?v=4" />
-  <link rel="stylesheet" href="styles.mobile.css?v=4" media="(max-width:768px)" />
+  <link rel="stylesheet" href="styles.mobile.css?v=4" media="(max-width: 768px)" />
 </head>
 <body>
 
 <header class="site-header">
   <a class="brand" href="index.html">
-    <img src="images/logo-square.png" alt="Lafayette Homes" />
+    <img src="images/logo-square.png" alt="Lafayette Homes logo" />
     <span>Lafayette Homes</span>
   </a>
-  <nav class="nav">
-    <a href="index.html">About</a>
+
+  <nav class="site-nav">
+    <a href="index.html#plans">Plans</a>
+    <a href="builds.html" aria-current="page">Builds</a>
     <a href="index.html#process">Process</a>
-    <a href="index.html#gallery">Gallery</a>
-    <a class="active" href="builds.html">Builds</a>
-    <a href="index.html#contact">Contact</a>
+    <a class="btn primary" href="index.html#contact">Get a quote</a>
   </nav>
-  <a class="call-chip" href="tel:8647561313">864-756-1313</a>
 </header>
 
-<section class="section container">
-  <h1>Current Builds</h1>
+<main id="content" class="container">
+  <section class="hero small">
+    <h1 class="h1">Current builds</h1>
+    <p>A quick look at homes we’re building now. Want something similar? Tap “Get a quote”.</p>
+  </section>
 
-  <!-- Build card -->
-  <article class="build-card card" data-build="1">
-    <img class="build-thumb" src="images/ext1.jpg" alt="123 East Compass Way" />
-    <div class="build-info">
-      <div class="build-status sold">SOLD</div>
-      <h2>123 East Compass Way, Easley SC 29640</h2>
-      <div class="build-meta">
-        <span>4 beds</span> • <span>4 baths</span> • <span>3,180 sqft</span>
+  <section class="builds">
+    <!-- Build card -->
+    <article class="build-card card" data-build="1">
+      <img class="build-thumb" src="images/ext1.jpg" alt="Exterior photo of the home" />
+      <div class="build-body">
+        <h2 class="h3">Plan 1826 — Easley, SC</h2>
+        <ul class="build-specs">
+          <li>3 bed</li>
+          <li>2 bath</li>
+          <li>~1,826 sq ft</li>
+        </ul>
+        <p class="muted">Open-concept living, upgraded kitchen, covered back porch, and a spacious primary suite.</p>
+        <div class="build-price">$699,999</div>
+
+        <div class="build-actions">
+          <button class="btn outline open-build" data-build="1">View photos</button>
+          <a class="btn primary" href="https://zillow.com" target="_blank" rel="noopener">Open Zillow</a>
+        </div>
       </div>
-      <div class="build-price">$699,999</div>
+    </article>
+  </section>
 
-      <div class="build-actions">
-        <button class="btn outline open-build" data-build="1">View photos</button>
-        <a class="btn primary" href="https://zillow.com" target="_blank" rel="noopener">Open Zillow</a>
+  <!-- Build modal -->
+  <div class="build-modal" id="build-1" aria-hidden="true">
+    <div class="build-modal-dialog">
+      <button class="build-close" aria-label="Close">×</button>
+
+      <!-- REPLACE/KEEP this slides block as-is. Update image list if you want -->
+      <div class="build-slides" aria-roledescription="carousel">
+        <button class="nav prev" aria-label="Previous image">‹</button>
+
+        <div class="track" role="group">
+          <figure class="slide" aria-label="1 of 7">
+            <img src="images/ext1.jpg" alt="Front elevation" />
+            <figcaption class="visually-hidden">Front elevation</figcaption>
+          </figure>
+          <figure class="slide" aria-label="2 of 7">
+            <img src="images/ext2.jpg" alt="Rear elevation" />
+            <figcaption class="visually-hidden">Rear elevation</figcaption>
+          </figure>
+          <figure class="slide" aria-label="3 of 7">
+            <img src="images/ext3.jpg" alt="Side elevation" />
+            <figcaption class="visually-hidden">Side elevation</figcaption>
+          </figure>
+          <figure class="slide" aria-label="4 of 7">
+            <img src="images/int1.jpg" alt="Kitchen" />
+            <figcaption class="visually-hidden">Kitchen</figcaption>
+          </figure>
+          <figure class="slide" aria-label="5 of 7">
+            <img src="images/int2.jpg" alt="Living room" />
+            <figcaption class="visually-hidden">Living room</figcaption>
+          </figure>
+          <figure class="slide" aria-label="6 of 7">
+            <img src="images/int3.jpg" alt="Primary suite" />
+            <figcaption class="visually-hidden">Primary suite</figcaption>
+          </figure>
+          <figure class="slide" aria-label="7 of 7">
+            <img src="images/int4.jpg" alt="Bathroom" />
+            <figcaption class="visually-hidden">Bathroom</figcaption>
+          </figure>
+        </div>
+
+        <button class="nav next" aria-label="Next image">›</button>
+
+        <div class="thumbs" aria-label="Thumbnails">
+          <button class="thumb" data-i="0"><img src="images/ext1.jpg" alt="Front elevation" /></button>
+          <button class="thumb" data-i="1"><img src="images/ext2.jpg" alt="Rear elevation" /></button>
+          <button class="thumb" data-i="2"><img src="images/ext3.jpg" alt="Side elevation" /></button>
+          <button class="thumb" data-i="3"><img src="images/int1.jpg" alt="Kitchen" /></button>
+          <button class="thumb" data-i="4"><img src="images/int2.jpg" alt="Living room" /></button>
+          <button class="thumb" data-i="5"><img src="images/int3.jpg" alt="Primary suite" /></button>
+          <button class="thumb" data-i="6"><img src="images/int4.jpg" alt="Bathroom" /></button>
+        </div>
+
+        <div class="counter" aria-live="polite">1 / 7</div>
       </div>
-    </div>
-  </article>
-</section>
-
-<!-- Build modal -->
-<div class="build-modal" id="build-1" aria-hidden="true">
-  <div class="build-modal-dialog">
-    <button class="build-close" aria-label="Close">×</button>
-
-    <div class="build-slides" data-build="1">
-      <button class="slide-nav prev" aria-label="Previous">‹</button>
-      <button class="slide-nav next" aria-label="Next">›</button>
-
-      <img src="images/ext1.jpg" alt="" />
-      <img src="images/ext2.jpg" alt="" />
-      <img src="images/ext3.jpg" alt="" />
-      <img src="images/int1.jpg" alt="" />
-      <img src="images/int2.jpg" alt="" />
-      <img src="images/int3.jpg" alt="" />
-      <img src="images/int4.jpg" alt="" />
     </div>
   </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="images/logo-square.png" alt="Lafayette Homes logo" />
+      <p>Upstate South Carolina homebuilder — modern, efficient, site-smart homes.</p>
+    </div>
+    <nav class="footer-links">
+      <a href="index.html#plans">Plans</a>
+      <a href="builds.html">Builds</a>
+      <a href="index.html#process">Process</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- Lightbox (used on homepage gallery; harmless to leave here) -->
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Close">×</button>
+  <img src="" alt="" />
 </div>
 
 <script src="main.js?v=4"></script>
