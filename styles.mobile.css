@@ -1,11 +1,7 @@
-/* Mobile-only refinements — kept minimal to avoid overriding desktop rules */
+/* Minimal mobile-only tweaks for v15 */
 @media (max-width: 768px){
-  .btn-row{ flex-direction:column; align-items:stretch; }
-  .btn-row .btn{ width:100%; text-align:center; }
+  .cta-row{ flex-direction:column; align-items:stretch; }
+  .cta-row .btn{ width:100%; text-align:center; }
   .build-card{ grid-template-columns:1fr; }
   .site-header .site-nav{ gap:8px; flex-wrap:wrap; }
-}
-/* On touch devices, never show the skip link */
-@media (pointer: coarse){
-  .skip-link{ display:none !important; }
 }

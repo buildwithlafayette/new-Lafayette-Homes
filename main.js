@@ -1,4 +1,4 @@
-// Theme toggle
+// Theme toggle (light/dark)
 (function(){
   const root = document.documentElement;
   const toggle = document.getElementById('theme-toggle');
@@ -19,15 +19,6 @@
       set(next); localStorage.setItem(LS, next);
     });
   }
-})();
-
-// Show skip-link only for keyboard users
-(function(){
-  function useKB(){ document.body.classList.add('using-keyboard'); }
-  function useMouse(){ document.body.classList.remove('using-keyboard'); }
-  window.addEventListener('keydown', (e)=>{ if(e.key === 'Tab') useKB(); });
-  window.addEventListener('mousedown', useMouse);
-  window.addEventListener('touchstart', useMouse, {passive:true});
 })();
 
 // Simple lightbox for inline gallery tiles
@@ -55,7 +46,6 @@
   const modal = document.getElementById('build-1');
   if(!openBtn || !modal) return;
 
-  const dialog = modal.querySelector('.build-modal-dialog');
   const track = modal.querySelector('.track');
   const slides = Array.from(modal.querySelectorAll('.slide'));
   const prev = modal.querySelector('.prev');
