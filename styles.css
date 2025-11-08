@@ -1,6 +1,6 @@
 /* THEME TOKENS
-   - Default = Light
-   - [data-theme="dark"] overrides below
+   Default = Light; prefers-color-scheme: dark as baseline if no explicit choice.
+   Toggle sets data-theme="light" | "dark" on :root.
 */
 :root{
   --bg:#ffffff;
@@ -13,19 +13,25 @@
   --card:#ffffff;
   --line:#e6e6e6;
   --shadow:0 6px 24px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.05);
+  --surface:#f7f9f8;
+  --surface-2:#fafafa;
+  --overlay:#000000bf;
 
-  --surface:#f7f9f8;    /* button bg */
-  --surface-2:#fafafa;  /* footer / strips */
-  --overlay:#000000bf;  /* modal backdrop */
+  /* Form fields */
+  --field-bg:#ffffff;
+  --field-border:#dcdcdc;
+  --field-text:#0a0a0a;
+  --field-ph:#9aa0a6;
+  --ring: color-mix(in oklab, var(--brand) 24%, transparent);
 }
 
 @media (prefers-color-scheme: dark){
   :root{
-    /* if user hasn't picked, start from system dark.
-       JS will replace with explicit data-theme later if they toggle */
     --bg:#0b0b0b; --fg:#f2f2f2; --muted:#a9a9a9;
     --card:#141414; --line:#232323; --shadow:none;
     --surface:#161616; --surface-2:#0f0f0f; --overlay:#000000bf;
+    --field-bg:#0f0f0f; --field-border:#2a2a2a; --field-text:#f1f1f1; --field-ph:#9a9a9a;
+    --ring: color-mix(in oklab, var(--brand) 32%, transparent);
   }
 }
 
@@ -34,14 +40,17 @@
   --bg:#0b0b0b; --fg:#f2f2f2; --muted:#a9a9a9;
   --card:#141414; --line:#232323; --shadow:none;
   --surface:#161616; --surface-2:#0f0f0f; --overlay:#000000bf;
+  --field-bg:#0f0f0f; --field-border:#2a2a2a; --field-text:#f1f1f1; --field-ph:#9a9a9a;
+  --ring: color-mix(in oklab, var(--brand) 32%, transparent);
 }
 
 /* Explicit LIGHT */
 :root[data-theme="light"]{
   --bg:#ffffff; --fg:#0a0a0a; --muted:#5f6368;
-  --card:#ffffff; --line:#e6e6e6;
-  --shadow:0 6px 24px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.05);
+  --card:#ffffff; --line:#e6e6e6; --shadow:0 6px 24px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.05);
   --surface:#f7f9f8; --surface-2:#fafafa; --overlay:#000000bf;
+  --field-bg:#ffffff; --field-border:#dcdcdc; --field-text:#0a0a0a; --field-ph:#9aa0a6;
+  --ring: color-mix(in oklab, var(--brand) 24%, transparent);
 }
 
 /* Base */
@@ -63,9 +72,9 @@ a:hover{ text-decoration:underline; }
 
 /* Buttons */
 .btn{
-  display:inline-block; padding:10px 14px; border-radius:10px;
-  border:1px solid var(--line); background:var(--surface); color:var(--fg);
-  font-weight:650; cursor:pointer; transition:all .15s ease;
+  display:inline-block; padding:12px 16px; border-radius:12px;
+  border:1.5px solid var(--line); background:var(--surface); color:var(--fg);
+  font-weight:700; cursor:pointer; transition:all .15s ease;
   box-shadow: 0 1px 0 rgba(0,0,0,.02);
 }
 .btn:hover{ transform:translateY(-1px); }
@@ -74,8 +83,17 @@ a:hover{ text-decoration:underline; }
   color:#fff; background:linear-gradient(180deg,#1a7c50,#0b4a2c);
   border-color:#0e3d27; box-shadow: var(--shadow);
 }
+/* stronger, not “cheap outline” */
 .btn.outline{
-  background:transparent; color:var(--brand); border-color:color-mix(in oklab, var(--brand) 20%, transparent);
+  background:transparent;
+  border-color: color-mix(in oklab, var(--brand) 65%, transparent);
+  color: var(--brand);
+}
+.btn.outline:hover{
+  background: color-mix(in oklab, var(--brand) 10%, transparent);
+}
+.btn.outline:active{
+  background: color-mix(in oklab, var(--brand) 16%, transparent);
 }
 
 /* Theme toggle chip */
@@ -139,6 +157,44 @@ a:hover{ text-decoration:underline; }
 .build-actions{ display:flex; gap:10px; margin-top:6px; flex-wrap:wrap; }
 .build-price{ font-size:22px; font-weight:800; letter-spacing:.2px; }
 
+/* ===== Polished FORM ===== */
+.form{ padding:16px; }
+.form .row{ display:grid; gap:14px; }
+.form .two-col{ grid-template-columns:1fr 1fr; }
+.form .one-col{ grid-template-columns:1fr; }
+
+.form label{
+  display:block; font-weight:750; margin:0 0 6px; letter-spacing:.2px;
+}
+
+.form input,
+.form textarea,
+.form select{
+  width:100%;
+  background: var(--field-bg);
+  color: var(--field-text);
+  border:1.5px solid var(--field-border);
+  border-radius:12px;
+  padding:12px 14px;
+  outline:none;
+  box-shadow: inset 0 1px 0 rgba(0,0,0,.02);
+  transition: border-color .16s ease, box-shadow .16s ease, background .16s ease;
+}
+.form textarea{ min-height:140px; resize:vertical; }
+
+.form input::placeholder,
+.form textarea::placeholder{ color: var(--field-ph); }
+
+.form input:focus,
+.form textarea:focus,
+.form select:focus{
+  border-color: color-mix(in oklab, var(--brand) 70%, var(--field-border));
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+/* Help small text if you add it later */
+.form .help{ margin-top:6px; font-size:12px; color:var(--muted); }
+
 /* Footer */
 .site-footer{ margin-top:60px; padding:20px; border-top:1px solid var(--line); background:var(--surface-2); }
 .footer-grid{ display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
@@ -152,18 +208,13 @@ a:hover{ text-decoration:underline; }
 .lightbox img{ max-width:95vw; max-height:90vh; border-radius:12px; width:auto; height:auto; object-fit:contain; background:var(--card); box-shadow: var(--shadow); }
 .lightbox .lightbox-close{ position:absolute; top:10px; right:10px; border:none; width:40px; height:40px; border-radius:50%; background:var(--card); color:var(--fg); cursor:pointer; font-size:22px; line-height:40px; box-shadow: var(--shadow); }
 
-/* Gallery tiles */
-.gallery-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:12px; }
-.gallery-tile{ width:100%; height:220px; object-fit:cover; border-radius:12px; background:var(--surface-2); cursor:zoom-in; box-shadow: var(--shadow); }
-
-/* ===== Build modal ===== */
+/* ===== Build modal (unchanged behavior) ===== */
 .build-modal{ position:fixed; inset:0; display:none; place-items:center; background:var(--overlay); padding:16px; z-index:9999; }
 .build-modal.show{ display:grid; }
 body.modal-open{ overflow:hidden; }
 
 .build-modal-dialog{ background:var(--card); color:var(--fg); border-radius:16px; width:min(1100px,100%); max-height:92vh; overflow:hidden; position:relative; box-shadow: var(--shadow); }
 
-/* Slider */
 .build-slides{ position:relative; background:var(--card); aspect-ratio:16 / 10; overflow:hidden; }
 .build-slides .track{ position:absolute; inset:0; display:flex; height:100%; will-change:transform; transition: transform 220ms ease; }
 .build-slides .slide{ min-width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:var(--card); }
